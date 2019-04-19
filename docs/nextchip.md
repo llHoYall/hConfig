@@ -18,13 +18,16 @@
 
 ## Specific
 
+* Visio
 * ARM Compiler
 * TortoiseSVN
 * SourceTree
 * CVD
 * Enterprise Architect
-* QAC
+* PRQA Framework
 * PC Lint
 * VectorCAST
 * CANalyser
 * LIN Analyzer
+* Eclipse
+* Beyond Compare 4
