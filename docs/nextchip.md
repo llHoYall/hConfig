@@ -32,3 +32,9 @@
 * Eclipse
 * Beyond Compare 4
 * IAR
+
+## Uninstall
+
+* GitHub projects
+* Microsoft account
+* Google account
