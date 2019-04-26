@@ -44,8 +44,8 @@
   + Neovim (`brew install neovim`)
 * Google Chrome (`brew cask install google-chrome`)
 * Dropbox (`brew cask install dropbox`)
-* [Drive](https://www.synology.com/en-global/support/download/DS213j#utilities)
-* [Note Station](https://www.synology.com/en-global/support/download/DS213j#utilities)
+* [Synology: Drive](https://www.synology.com/en-global/support/download/DS213j#utilities)
+* [Synology: Note Station](https://www.synology.com/en-global/support/download/DS213j#utilities)
 * fzf (`brew install fzf`)
 
 ## Utility
