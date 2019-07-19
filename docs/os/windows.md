@@ -41,9 +41,9 @@
 
 * ConEmu (`choco install -y conemu`)
 * WSL (`Windows Store`)
-```sh
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-```
+    ```sh
+    Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+    ```
 * TeraTerm (`choco install -y teraterm`)
 * Hyper (`choco install -y hyper`)
 * Termius (`Windows Store`, https://www.termius.com)

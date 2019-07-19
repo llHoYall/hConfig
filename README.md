@@ -4,9 +4,9 @@ My development environment configuration.
 
 ## OS
 
-- [MAC](docs/mac.md)
+- [MAC](docs/os/mac.md)
 - [Linux](https://github.com/llHoYall/hConfig/wiki/Linux)
-- [Windows](https://github.com/llHoYall/hConfig/wiki/Windows)
+- [Windows](docs/os/windows.md)
 
 ### Tips
 
