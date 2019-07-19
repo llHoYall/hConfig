@@ -39,6 +39,17 @@
 
 ## [Terminals]
 
+### Execute Policy
+
+> $ Set-ExecutionPolicy RemoteSigned
+
+* `Restricted` : Can't execute script. Default execute policy.
+* `AllSigned` : 신뢰된 게시자의 digital 서명을 받은 script만 실행가능
+* `RemoteSigned` : Internet에서 download하는 script 구성 file에는 digital 서명이 필요. Can execute local script.
+* `Unstricted` : 서명되지 않은 script를 실행할 수 있다. Internet에서 download 받은 file에 대해서는 경고를 한다.
+* `Bypass` : 모든 script나 구성 file을 실행할 수 있다.
+* `Undefined` : 실행 정책이 설정되지 않았다.
+
 ### Create Dummy File
 
 > $ fsutil file createnew \<name\> \<length\>
