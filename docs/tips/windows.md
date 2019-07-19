@@ -3,12 +3,9 @@
 ## ToC
 
 * [Slow Powershell](#Slow-Powershell)
-* [Virtual Desktop](#Virtual-Desktop)
-* [Action Center](#Action-Center)
-* [WinX Menu](#WinX-Menu)
-* [Record Movie](#Record-Movie)
-* [Create Dummy File](#Create-Dummy-File)
-* [Multiple Excel](#Multiple-Excel)
+* [Shortcuts](#Shortcuts)
+* [Terminals](#Terminals)
+* [Registries](#Registries)
 * [Install windows-build-tools with npm](#Install-windows-build-tools-with-npm)
 * [Install .Net3.5 on Windows 10](#Install-.net3.5-on-Windows-10)
 
@@ -20,29 +17,35 @@
 >
 > $ Measure-Command { Get-ComputerInfo }
 
-## [Virtual Desktop]
+## [Shortcuts]
+
+### Virtual Desktop
 
 * `<CTRL + WIN + d>` : Create
 * `<CTRL + WIN + LEFT/RIGHT>` : Move focus
 * `<CTRL + WIN + F4>` : Delete
 
-## [Action Center]
+### Action Center
 
 * `<WIN + a>`
 
-## [WinX Menu]
+### WinX Menu
 
 * `<WIN + x>`
 
-## [Record Movie]
+### Record Movie
 
 * `<WIN + g>`
 
-## [Create Dummy File]
+## [Terminals]
+
+### Create Dummy File
 
 > $ fsutil file createnew \<name\> \<length\>
 
-## [Multiple Excel]
+## [Registries]
+
+### Multiple Excel
 
 1. Run `regedit` on `win+r`
 2. Select `HKEY_CLASSES_ROOT/Excel.Sheet.12/shell/Open`
@@ -56,6 +59,16 @@
 "C:\Program Files (x86)\Microsoft Office\Office14\EXCEL.EXE"/en "%1"
 ```
 
+### Add to Context Menu
+
+1. Run `regedit` on `win+r`
+2. Select `HKEY_CLASSED_ROOT/*/shell`
+3. Create key with name in context menu
+4. Create sub key `command`
+5. Edit key data like below
+
+    ![](../images/windows_context-menu.png)
+
 ## [Install windows-build-tools with npm]
 
 > $ npm install -g windows-build-tools
@@ -64,7 +77,7 @@
 
 Windows 10 build 1809 version에서 .net3.5 기능을 설치하려면 다음의 순서를 따라서 한다.
 
-![](../images/windows-update.png)
+![](../images/windows_dot-net.png)
 
 1. 위 screenshot을 따라서 registry의 값을 **0**으로 설정한다.
 2. `WIN+R`키를 눌러 실행을 실행시키고, `service.msc`를 입력한 후, `Windows Update` service를 재시작한다.
