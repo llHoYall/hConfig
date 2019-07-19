@@ -15,7 +15,7 @@
 * uTorrent (`choco install -y utorrent`)
 * PotPlayer (`choco install -y potplayer`)
 * [Bandizip](https://www.bandisoft.com/bandizip/)
-* [PicPick](https://picpick.kr.uptodown.com/windows)
+* [PicPick](`choco install -y picpick.portable`)
 * [Acrobat Reader](https://get.adobe.com/kr/reader/)
 * Typora (`choco install -y typora`)
 * [Ridibooks](https://ridibooks.com/support/app/download)
