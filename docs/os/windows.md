@@ -24,7 +24,7 @@
 
 ### Font
 
-* [D2 Coding Font](https://github.com/naver/d2codingfont)
+* D2 Coding Font (`choco install -y d2codingfont`)
 
 ### Dev Utility
 
