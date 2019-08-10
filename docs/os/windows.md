@@ -5,6 +5,10 @@
 * MS Office
 * Calculator (`Windows Store`)
 * [Chocolatey](https://chocolatey.org/install)
+    ```sh
+    $ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    ```
+
 * Google Chrome (`choco install -y googlechrome`)
 * [Synology: Drive](https://www.synology.com/en-us/support/download/DS213j#utilities)
 * Dropbox (`choco install -y dropbox`)
@@ -39,10 +43,11 @@
 
 ### Terminal
 
+* Windows Terminal (`choco install -y microsoft-windows-terminal`)
 * ConEmu (`choco install -y conemu`)
 * WSL (`Windows Store`)
     ```sh
-    Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+    $ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
     ```
 * TeraTerm (`choco install -y teraterm`)
 * Hyper (`choco install -y hyper`)
