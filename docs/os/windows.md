@@ -8,6 +8,12 @@
     ```sh
     $ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
     ```
+* Powershell(Preview) (`choco install -y powershell-preview`)
+* WSL (`choco install -y wsl`)
+    ```sh
+    $ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+    ```
+    * Ubuntu v18.04 (`choco install -y wsl-ubuntu-1804`)
 
 * Google Chrome (`choco install -y googlechrome`)
 * [Synology: Drive](https://www.synology.com/en-us/support/download/DS213j#utilities)
@@ -45,10 +51,6 @@
 
 * Windows Terminal (`choco install -y microsoft-windows-terminal`)
 * ConEmu (`choco install -y conemu`)
-* WSL (`Windows Store`)
-    ```sh
-    $ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-    ```
 * TeraTerm (`choco install -y teraterm`)
 * Hyper (`choco install -y hyper`)
 * Termius (`Windows Store`, https://www.termius.com)
