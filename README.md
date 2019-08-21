@@ -22,6 +22,10 @@ My development environment configuration.
 - [Chocolatey](https://github.com/llHoYall/hConfig/wiki/Chocolatey)
 - [Pacman](https://github.com/llHoYall/hConfig/wiki/Pacman)
 
+## Shell
+
+- [Powershell](docs/shell/powershell.md)
+
 ## Tools
 
 - [iTerm2](https://github.com/llHoYall/hConfig/wiki/iTerm2)
