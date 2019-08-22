@@ -39,6 +39,10 @@
 
 ## [Terminals]
 
+### Check as administrator
+
+> $ ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
+
 ### Execute Policy
 
 > $ Set-ExecutionPolicy RemoteSigned
