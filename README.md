@@ -25,6 +25,7 @@ My development environment configuration.
 ## Shell
 
 - [Powershell](docs/shell/powershell.md)
+- [WSL](docs/shell/wsl.md)
 
 ## Tools
 
