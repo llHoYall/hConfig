@@ -10,9 +10,6 @@
     ```
 * Powershell(Preview) (`choco install -y powershell-preview`)
 * WSL (`choco install -y wsl`)
-    ```sh
-    $ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-    ```
     * Ubuntu v18.04 (`choco install -y wsl-ubuntu-1804`)
 
 * Google Chrome (`choco install -y googlechrome`)
