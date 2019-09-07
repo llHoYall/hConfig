@@ -18,7 +18,7 @@ If (!(Get-Command wt -errorAction SilentlyContinue)) {
 <# Windows Terminal Settings #>
 Write-Host -NoNewline "  => Config "
 Write-Host -ForegroundColor DarkYellow "WindowsTerminal: Settings"
-If (Test-Path $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState\profiles.json) {
-  Remove-Item $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState\profiles.json
+If (Test-Path $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json) {
+  Remove-Item $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json
 }
-New-Item -ItemType HardLink -Path $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState\profiles.json -Value $PSScriptRoot\profiles.json
+New-Item -ItemType HardLink -Path $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\profiles.json -Value $PSScriptRoot\profiles.json

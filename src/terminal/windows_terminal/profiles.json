@@ -1,308 +1,295 @@
 {
-    "globals" :
-    {
-        "alwaysShowTabs" : true,
-        "defaultProfile" : "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-        "initialCols" : 120,
-        "initialRows" : 50,
-        "keybindings" :
-        [
-            {
-                "command" : "closePane",
-                "keys" :
-                [
-                    "ctrl+shift+w"
-                ]
-            },
-            {
-                "command" : "copy",
-                "keys" :
-                [
-                    "ctrl+shift+c"
-                ]
-            },
-            {
-                "command" : "duplicateTab",
-                "keys" :
-                [
-                    "ctrl+shift+d"
-                ]
-            },
-            {
-                "command" : "newTab",
-                "keys" :
-                [
-                    "ctrl+shift+t"
-                ]
-            },
-            {
-                "command" : "newTabProfile0",
-                "keys" :
-                [
-                    "ctrl+shift+1"
-                ]
-            },
-            {
-                "command" : "newTabProfile1",
-                "keys" :
-                [
-                    "ctrl+shift+2"
-                ]
-            },
-            {
-                "command" : "newTabProfile2",
-                "keys" :
-                [
-                    "ctrl+shift+3"
-                ]
-            },
-            {
-                "command" : "newTabProfile3",
-                "keys" :
-                [
-                    "ctrl+shift+4"
-                ]
-            },
-            {
-                "command" : "newTabProfile4",
-                "keys" :
-                [
-                    "ctrl+shift+5"
-                ]
-            },
-            {
-                "command" : "newTabProfile5",
-                "keys" :
-                [
-                    "ctrl+shift+6"
-                ]
-            },
-            {
-                "command" : "newTabProfile6",
-                "keys" :
-                [
-                    "ctrl+shift+7"
-                ]
-            },
-            {
-                "command" : "newTabProfile7",
-                "keys" :
-                [
-                    "ctrl+shift+8"
-                ]
-            },
-            {
-                "command" : "newTabProfile8",
-                "keys" :
-                [
-                    "ctrl+shift+9"
-                ]
-            },
-            {
-                "command" : "nextTab",
-                "keys" :
-                [
-                    "ctrl+tab"
-                ]
-            },
-            {
-                "command" : "openSettings",
-                "keys" :
-                [
-                    "ctrl+,"
-                ]
-            },
-            {
-                "command" : "paste",
-                "keys" :
-                [
-                    "ctrl+shift+v"
-                ]
-            },
-            {
-                "command" : "prevTab",
-                "keys" :
-                [
-                    "ctrl+shift+tab"
-                ]
-            },
-            {
-                "command" : "scrollDown",
-                "keys" :
-                [
-                    "ctrl+shift+down"
-                ]
-            },
-            {
-                "command" : "scrollDownPage",
-                "keys" :
-                [
-                    "ctrl+shift+pgdn"
-                ]
-            },
-            {
-                "command" : "scrollUp",
-                "keys" :
-                [
-                    "ctrl+shift+up"
-                ]
-            },
-            {
-                "command" : "scrollUpPage",
-                "keys" :
-                [
-                    "ctrl+shift+pgup"
-                ]
-            },
-            {
-                "command" : "switchToTab0",
-                "keys" :
-                [
-                    "ctrl+alt+1"
-                ]
-            },
-            {
-                "command" : "switchToTab1",
-                "keys" :
-                [
-                    "ctrl+alt+2"
-                ]
-            },
-            {
-                "command" : "switchToTab2",
-                "keys" :
-                [
-                    "ctrl+alt+3"
-                ]
-            },
-            {
-                "command" : "switchToTab3",
-                "keys" :
-                [
-                    "ctrl+alt+4"
-                ]
-            },
-            {
-                "command" : "switchToTab4",
-                "keys" :
-                [
-                    "ctrl+alt+5"
-                ]
-            },
-            {
-                "command" : "switchToTab5",
-                "keys" :
-                [
-                    "ctrl+alt+6"
-                ]
-            },
-            {
-                "command" : "switchToTab6",
-                "keys" :
-                [
-                    "ctrl+alt+7"
-                ]
-            },
-            {
-                "command" : "switchToTab7",
-                "keys" :
-                [
-                    "ctrl+alt+8"
-                ]
-            },
-            {
-                "command" : "switchToTab8",
-                "keys" :
-                [
-                    "ctrl+alt+9"
-                ]
-            }
-        ],
-        "requestedTheme" : "system",
-        "showTabsInTitlebar" : true,
-        "showTerminalTitleInTitlebar" : true,
-        "wordDelimiters" : " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}~?\u2502"
-    },
-    "profiles" :
-    [
-        {
-            "acrylicOpacity" : 0.89999997615814209,
-            "closeOnExit" : true,
-            "colorScheme" : "hSexy",
-            "commandline" : "C:\\Program Files\\PowerShell\\7-preview\\pwsh.exe",
-            "cursorColor" : "#C5C8C6",
-            "cursorHeight" : 25,
-            "cursorShape" : "vintage",
-            "fontFace" : "D2Coding ligature",
-            "fontSize" : 10,
-            "guid" : "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-            "historySize" : 9001,
-            "icon" : "ms-appx:///ProfileIcons/{574e775e-4f2a-5b96-ac1e-a2962a402336}.png",
-            "name" : "PowerShell",
-            "padding" : "2, 0, 0, 0",
-            "snapOnInput" : true,
-            "startingDirectory" : "%USERPROFILE%",
-            "useAcrylic" : true
-        },
-        {
-            "acrylicOpacity" : 0.89999997615814209,
-            "closeOnExit" : true,
-            "colorScheme" : "hSexy",
-            "commandline" : "cmd.exe",
-            "cursorColor" : "#C5C8C6",
-            "cursorShape" : "underscore",
-            "fontFace" : "D2Coding ligature",
-            "fontSize" : 10,
-            "guid" : "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-            "historySize" : 9001,
-            "icon" : "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
-            "name" : "Command Prompt",
-            "padding" : "2, 0, 0, 0",
-            "snapOnInput" : true,
-            "startingDirectory" : "%USERPROFILE%",
-            "useAcrylic" : true
-        },
-        {
-            "acrylicOpacity" : 0.89999997615814209,
-            "closeOnExit" : true,
-            "colorScheme" : "hSexy",
-            "commandline" : "wsl.exe -d Ubuntu-18.04",
-            "cursorColor" : "#C5C8C6",
-            "cursorShape" : "bar",
-            "fontFace" : "D2Coding ligature",
-            "fontSize" : 10,
-            "guid" : "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
-            "historySize" : 9001,
-            "icon" : "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
-            "name" : "Ubuntu-18.04",
-            "padding" : "2, 0, 0, 0",
-            "snapOnInput" : true,
-            "startingDirectory" : "%USERPROFILE%",
-            "useAcrylic" : false
-        }
-    ],
-    "schemes" :
-    [
-        {
-            "background" : "#1D1F21",
-            "black" : "#282A2E",
-            "blue" : "#5F819D",
-            "brightBlack" : "#373B41",
-            "brightBlue" : "#81A2BE",
-            "brightCyan" : "#8ABEB7",
-            "brightGreen" : "#B5BD68",
-            "brightPurple" : "#B294BB",
-            "brightRed" : "#CC6666",
-            "brightWhite" : "#C5C8C6",
-            "brightYellow" : "#F0C674",
-            "cyan" : "#5E8D87",
-            "foreground" : "#C5C8C6",
-            "green" : "#8C9440",
-            "name" : "hSexy",
-            "purple" : "#85678F",
-            "red" : "#A54242",
-            "white" : "#707880",
-            "yellow" : "#DE935F"
-        }
-    ]
+	"globals": {
+		"alwaysShowTabs": true,
+		"defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+		"initialCols": 120,
+		"initialRows": 50,
+		"keybindings": [
+			{
+				"command": "closePane",
+				"keys": [
+					"ctrl+shift+w"
+				]
+			},
+			{
+				"command": "copy",
+				"keys": [
+					"ctrl+shift+c"
+				]
+			},
+			{
+				"command": "duplicateTab",
+				"keys": [
+					"ctrl+shift+d"
+				]
+			},
+			{
+				"command": "newTab",
+				"keys": [
+					"ctrl+shift+t"
+				]
+			},
+			{
+				"command": "newTabProfile0",
+				"keys": [
+					"ctrl+shift+1"
+				]
+			},
+			{
+				"command": "newTabProfile1",
+				"keys": [
+					"ctrl+shift+2"
+				]
+			},
+			{
+				"command": "newTabProfile2",
+				"keys": [
+					"ctrl+shift+3"
+				]
+			},
+			{
+				"command": "newTabProfile3",
+				"keys": [
+					"ctrl+shift+4"
+				]
+			},
+			{
+				"command": "newTabProfile4",
+				"keys": [
+					"ctrl+shift+5"
+				]
+			},
+			{
+				"command": "newTabProfile5",
+				"keys": [
+					"ctrl+shift+6"
+				]
+			},
+			{
+				"command": "newTabProfile6",
+				"keys": [
+					"ctrl+shift+7"
+				]
+			},
+			{
+				"command": "newTabProfile7",
+				"keys": [
+					"ctrl+shift+8"
+				]
+			},
+			{
+				"command": "newTabProfile8",
+				"keys": [
+					"ctrl+shift+9"
+				]
+			},
+			{
+				"command": "nextTab",
+				"keys": [
+					"ctrl+tab"
+				]
+			},
+			{
+				"command": "openSettings",
+				"keys": [
+					"ctrl+,"
+				]
+			},
+			{
+				"command": "paste",
+				"keys": [
+					"ctrl+shift+v"
+				]
+			},
+			{
+				"command": "prevTab",
+				"keys": [
+					"ctrl+shift+tab"
+				]
+			},
+			{
+				"command": "scrollDown",
+				"keys": [
+					"ctrl+shift+down"
+				]
+			},
+			{
+				"command": "scrollDownPage",
+				"keys": [
+					"ctrl+shift+pgdn"
+				]
+			},
+			{
+				"command": "scrollUp",
+				"keys": [
+					"ctrl+shift+up"
+				]
+			},
+			{
+				"command": "scrollUpPage",
+				"keys": [
+					"ctrl+shift+pgup"
+				]
+			},
+			{
+				"command": "switchToTab0",
+				"keys": [
+					"ctrl+alt+1"
+				]
+			},
+			{
+				"command": "switchToTab1",
+				"keys": [
+					"ctrl+alt+2"
+				]
+			},
+			{
+				"command": "switchToTab2",
+				"keys": [
+					"ctrl+alt+3"
+				]
+			},
+			{
+				"command": "switchToTab3",
+				"keys": [
+					"ctrl+alt+4"
+				]
+			},
+			{
+				"command": "switchToTab4",
+				"keys": [
+					"ctrl+alt+5"
+				]
+			},
+			{
+				"command": "switchToTab5",
+				"keys": [
+					"ctrl+alt+6"
+				]
+			},
+			{
+				"command": "switchToTab6",
+				"keys": [
+					"ctrl+alt+7"
+				]
+			},
+			{
+				"command": "switchToTab7",
+				"keys": [
+					"ctrl+alt+8"
+				]
+			},
+			{
+				"command": "switchToTab8",
+				"keys": [
+					"ctrl+alt+9"
+				]
+			}
+		],
+		"requestedTheme": "system",
+		"showTabsInTitlebar": true,
+		"showTerminalTitleInTitlebar": true,
+		"wordDelimiters": " ./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}~?\u2502"
+	},
+	"profiles": [
+		{
+			"acrylicOpacity": 0.89999997615814209,
+			"closeOnExit": true,
+			"colorScheme": "hSexy",
+			"commandline": "C:\\Program Files\\PowerShell\\7-preview\\pwsh.exe",
+			"cursorColor": "#C5C8C6",
+			"cursorHeight": 25,
+			"cursorShape": "vintage",
+			"fontFace": "D2Coding ligature",
+			"fontSize": 10,
+			"guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+			"historySize": 9001,
+			"icon": "ms-appx:///ProfileIcons/{574e775e-4f2a-5b96-ac1e-a2962a402336}.png",
+			"name": "PowerShell",
+			"padding": "2, 0, 0, 0",
+			"snapOnInput": true,
+			"startingDirectory": "%USERPROFILE%",
+			"useAcrylic": true
+		},
+		{
+			"acrylicOpacity": 0.89999997615814209,
+			"closeOnExit": true,
+			"colorScheme": "hSexy",
+			"commandline": "cmd.exe",
+			"cursorColor": "#C5C8C6",
+			"cursorShape": "underscore",
+			"fontFace": "D2Coding ligature",
+			"fontSize": 10,
+			"guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+			"historySize": 9001,
+			"icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
+			"name": "Command Prompt",
+			"padding": "2, 0, 0, 0",
+			"snapOnInput": true,
+			"startingDirectory": "%USERPROFILE%",
+			"useAcrylic": true
+		},
+		{
+			"acrylicOpacity": 0.89999997615814209,
+			"closeOnExit": true,
+			"colorScheme": "hSexy",
+			"commandline": "wsl.exe -d Ubuntu-18.04",
+			"cursorColor": "#C5C8C6",
+			"cursorShape": "bar",
+			"fontFace": "D2Coding ligature",
+			"fontSize": 10,
+			"guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
+			"historySize": 9001,
+			"icon": "ms-appx:///ProfileIcons/{9acb9455-ca41-5af7-950f-6bca1bc9722f}.png",
+			"name": "Ubuntu-18.04",
+			"padding": "2, 0, 0, 0",
+			"snapOnInput": true,
+			"startingDirectory": "%USERPROFILE%",
+			"useAcrylic": false
+		}
+	],
+	"schemes": [
+		{
+			"background": "#1D1F21",
+			"black": "#282A2E",
+			"blue": "#5F819D",
+			"brightBlack": "#373B41",
+			"brightBlue": "#81A2BE",
+			"brightCyan": "#8ABEB7",
+			"brightGreen": "#B5BD68",
+			"brightPurple": "#B294BB",
+			"brightRed": "#CC6666",
+			"brightWhite": "#C5C8C6",
+			"brightYellow": "#F0C674",
+			"cyan": "#5E8D87",
+			"foreground": "#C5C8C6",
+			"green": "#8C9440",
+			"name": "hSexy",
+			"purple": "#85678F",
+			"red": "#A54242",
+			"white": "#707880",
+			"yellow": "#DE935F"
+		},
+		{
+			"background": "#0C0C0C",
+			"black": "#0C0C0C",
+			"blue": "#0037DA",
+			"brightBlack": "#767676",
+			"brightBlue": "#3B78FF",
+			"brightCyan": "#61D6D6",
+			"brightGreen": "#16C60C",
+			"brightPurple": "#B4009E",
+			"brightRed": "#E74856",
+			"brightWhite": "#F2F2F2",
+			"brightYellow": "#F9F1A5",
+			"cyan": "#3A96DD",
+			"foreground": "#CCCCCC",
+			"green": "#13A10E",
+			"name": "Campbell",
+			"purple": "#881798",
+			"red": "#C50F1F",
+			"white": "#CCCCCC",
+			"yellow": "#C19C00"
+		}
+	]
 }
