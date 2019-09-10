@@ -228,7 +228,25 @@
 			"snapOnInput": true,
 			"startingDirectory": "%USERPROFILE%",
 			"useAcrylic": true
-		},
+        },
+        {
+            "acrylicOpacity": 0.89999997615814209,
+            "closeOnExit": true,
+            "colorScheme": "hSexy",
+            "commandline": "C:/Program Files (x86)/SanDisk/CVF_2.0_x64/runEnv.bat x64",
+            "cursorColor": "#C5C8C6",
+            "cursorShape": "underscore",
+            "fontFace": "D2Coding ligature",
+            "fontSize": 10,
+            "guid": "{0caa0dad-35be-5f56-a8ff-afcee2686101}",
+            "historySize": 9001,
+            "icon": "ms-appx:///ProfileIcons/{0caa0dad-35be-5f56-a8ff-afceeeaa6101}.png",
+            "name": "CVF x64",
+            "padding": "2, 0, 0, 0",
+            "snapOnInput": true,
+            "startingDirectory": "%USERPROFILE%",
+            "useAcrylic": true
+        },
 		{
 			"acrylicOpacity": 0.89999997615814209,
 			"closeOnExit": true,
