@@ -61,3 +61,5 @@
 * Clang (LLVM) (`choco install -y llvm`)
 * CMake (`choco install -y cmake`)
 * Docker (`choco install -y docker-for-windows docker`)
+* PyCharm (`choco install -y pycharm-community`)
+* IntelliJ IDEA (`choco install -y intellijidea-community`)
