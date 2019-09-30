@@ -78,6 +78,9 @@ Set-Alias -Name gh -Value Git-Help
 function Git-Log { git log --oneline --graph -50 $args }
 Set-Alias -Name glg -Value Git-Log
 
+function Git-Log-Extended { git log --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' -20 $args }
+Set-Alias -Name glge -Value Git-Log-Extended
+
 function Git-Merge { git merge $args }
 Set-Alias -Name gmg -Value Git-Merge
 
