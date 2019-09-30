@@ -35,8 +35,8 @@ Import-Module -Name PSColor
 Import-Module -Name PSReadLine
 
 <# Aliasing ------------------------------------------------------------------#>
-# Set-Alias vim 'C:\Program Files (x86)\vim\vim80\vim.exe'
 Set-Alias vim 'C:\tools\neovim\Neovim\bin\nvim.exe'
+Set-Alias code 'C:\Program Files\Microsoft VS Code\bin\code.cmd'
 # Set-Alias meld 'C:\Program Files (x86)\Meld\Meld.exe'
 # Set-Alias python2 'C:\Python27\python.exe'
 # Set-Alias python3 'C:\Python36\python.exe'
@@ -65,6 +65,12 @@ Set-Alias -Name gcmm! -Value Git-Commit-Amend
 
 function Git-Config { git config $args }
 Set-Alias -Name gcf -Value Git-Config
+
+function Git-Config-Global { git config --global $args }
+Set-Alias -Name gcfg -Value Git-Config-Global
+
+function Git-Config-Local { git config --local $args }
+Set-Alias -Name gcfl -Value Git-Config-Local
 
 function Git-Diff { git diff $args }
 Set-Alias -Name gd -Value Git-Diff
