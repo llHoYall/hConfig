@@ -19,6 +19,7 @@
 
 ## Utility
 
+* AutoHotkey (`choco install -y autohotkey`)
 * uTorrent (`choco install -y utorrent`)
 * PotPlayer (`choco install -y potplayer`)
 * [Bandizip](https://www.bandisoft.com/bandizip/)
@@ -32,6 +33,7 @@
 ### Font
 
 * D2 Coding Font (`choco install -y d2codingfont`)
+* Cascadia Font (`choco install -y cascadiacode`)
 
 ### Dev Utility
 

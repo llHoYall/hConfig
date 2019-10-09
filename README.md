@@ -38,4 +38,5 @@ My development environment configuration.
 ## Etc
 
 - [RegExp](https://github.com/llHoYall/hConfig/wiki/Regular-Expressions)
+- [AutoHotKey](docs/etc/autohotkey.md)
 - [TermColor](https://github.com/llHoYall/hConfig/wiki/Terminal-Color)
