@@ -40,6 +40,8 @@
 ## System
 
 * Homebrew (`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`)
+* xcode (`xcode-select --install`)
+* zsh (`brew install zsh`)
 * Vim (`brew install vim`)
   + Neovim (`brew install neovim`)
 * Google Chrome (`brew cask install google-chrome`)
