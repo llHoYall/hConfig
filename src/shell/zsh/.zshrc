@@ -67,11 +67,11 @@ ZSH_THEME="hoya"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
-	fasd
-	fzf
+#	fasd
+#	fzf
 	tmux
-	tmuxinator
-	virtualenv
+#	tmuxinator
+#	virtualenv
 	zsh-syntax-highlighting
 	zsh-autosuggestions
 )
@@ -114,8 +114,10 @@ export EDITOR='nvim'
 export LS_COLORS=$LS_COLORS:"di=34:*.sh=32:*.ps1=32:ow=34:"
 
 # NVM -------------------------------------------------------------------------#
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+if [ -d "$HOME/.nvm" ]
+	export NVM_DIR="$HOME/.nvm"
+	. "/usr/local/opt/nvm/nvm.sh"
+fi
 
 # fzf -------------------------------------------------------------------------#
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -124,3 +126,4 @@ export NVM_DIR="$HOME/.nvm"
 if [ -z "$TMUX" ]; then
 	tmux attach -t hTMUX || tmux new -s hTMUX
 fi
+
