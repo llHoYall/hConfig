@@ -4,7 +4,7 @@ Write-Host -ForegroundColor Yellow "PowerShell"
 If (Get-Command pwsh-preview -errorAction SilentlyContinue) {
 	Write-Host "     Already installed."
 } Else {
-  choco install -y powershell-preview
+  Exit
 }
 
 <# Posh-Git Module #>
