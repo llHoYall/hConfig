@@ -128,4 +128,3 @@ fi
 if [ -z "$TMUX" ]; then
 	tmux attach -t hTMUX || tmux new -s hTMUX
 fi
-

@@ -59,4 +59,3 @@ fi
 
 chsh -s $(which zsh)
 echo -e "     ${RED}Please, reopen the shell${END}"
-
