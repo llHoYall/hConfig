@@ -5,9 +5,6 @@
 * MS Office
 * Calculator (`Windows Store`)
 * [Chocolatey](https://chocolatey.org/install)
-    ```sh
-    $ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-    ```
 * Powershell(Preview) (`choco install -y powershell-preview`)
 * WSL (`choco install -y wsl`)
     * Ubuntu v18.04 (`choco install -y wsl-ubuntu-1804`)
@@ -32,8 +29,8 @@
 
 ### Font
 
-* D2 Coding Font (`choco install -y d2codingfont`)
 * Cascadia Font (`choco install -y cascadiacode`)
+* D2 Coding Font (`choco install -y d2codingfont`)
 
 ### Dev Utility
 

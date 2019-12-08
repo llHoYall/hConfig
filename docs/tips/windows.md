@@ -2,6 +2,7 @@
 
 ## ToC
 
+* [Paths](#Paths)
 * [Slow Powershell](#Slow-Powershell)
 * [Shortcuts](#Shortcuts)
 * [Terminals](#Terminals)
@@ -10,6 +11,18 @@
 * [Install .Net3.5 on Windows 10](#Install-.net3.5-on-Windows-10)
 
 ----
+
+## [Paths]
+
+### Startup Folder
+
+* All User
+
+> C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp
+
+* Current User
+
+> C:\Users\Username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
 
 ## [[Slow Powershell](https://github.com/PowerShell/PowerShell/issues/3080)]
 
