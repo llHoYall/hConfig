@@ -5,7 +5,7 @@ CapsLock::LControl
 #if GetKeyState("AppsKey", "P")
 `::`
 #if !GetKeyState("AppsKey", "P")
-`::send {Esc}
+`::Esc
 
 ; LAYER 1 (Navigation) --------------------------------------------------------;
 #if GetKeyState("AppsKey", "P")
@@ -43,21 +43,22 @@ l::PgUp
 .::PgDn
 
 ; LAYER 2 (Mouse) -------------------------------------------------------------;
-AppsKey & Up::
-	MouseMove, 0, -5, , R
-	return
+AppsKey & Up::MouseMove, 0, -10, , R
+AppsKey & Left::MouseMove, -10, 0, , R
+AppsKey & Down::MouseMove, 0, 10, , R
+AppsKey & Right::MouseMove, 10, 0, , R
 
-AppsKey & Down::
-	MouseMove, 0, 5, , R
-	return
+#if GetKeyState("AppsKey", "P")
+VK19 & w::MouseMove, 0, -5, , R
+VK19 & a::MouseMove, -5, 0, , R
+VK19 & s::MouseMove, 0, 5, , R
+VK19 & d::MouseMove, 5, 0, , R
 
-AppsKey & Left::
-	MouseMove, -5, 0, , R
-	return
+VK19 & q::MouseClick, left
+VK19 & e::MouseClick, right
 
-AppsKey & Right::
-	MouseMove, 5, 0, , R
-	return
+VK19 & z::Send, {WheelDown}
+VK19 & c::send, {WheelUp}
 
 ; LAYER 3 (Media) -------------------------------------------------------------;
 #if GetKeyState("AppsKey", "P")
