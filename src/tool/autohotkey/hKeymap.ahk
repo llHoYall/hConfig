@@ -2,6 +2,11 @@
 LControl::CapsLock
 CapsLock::LControl
 
+#if GetKeyState("AppsKey", "P")
+`::`
+#if !GetKeyState("AppsKey", "P")
+`::send {Esc}
+
 ; LAYER 1 (Navigation) --------------------------------------------------------;
 #if GetKeyState("AppsKey", "P")
 1::F1
@@ -17,25 +22,25 @@ CapsLock::LControl
 -::F11
 =::F12
 
-w::send {Up}
-a::send {Left}
-s::send {Down}
-d::send {Right}
+w::Up
+a::Left
+s::Down
+d::Right
 
-q::send {Home}
-e::send {End}
-z::send {PgUp}
-c::send {PgDn}
+q::Home
+e::End
+z::PgUp
+c::PgDn
 
-[::send {Up}
-`;::send {Left}
-/::send {Down}
-'::send {Right}
+[::Up
+`;::Left
+/::Down
+'::Right
 
-k::send {Home}
-,::send {End}
-l::send {PgUp}
-.::send {PgDn}
+k::Home
+,::End
+l::PgUp
+.::PgDn
 
 ; LAYER 2 (Mouse) -------------------------------------------------------------;
 AppsKey & Up::
