@@ -97,6 +97,12 @@
 
     ![](../images/windows_context-menu.png)
 
+### Disable UAC
+
+1. Run `regedit` on `win+r`
+2. Select `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System`
+3. Edit `EnableLUA` to `0`
+
 ## [Install windows-build-tools with npm]
 
 > $ npm install -g windows-build-tools
