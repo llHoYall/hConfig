@@ -3,6 +3,8 @@ Write-Host -NoNewline " ==> Install "
 Write-Host -ForegroundColor Yellow "AutoHotkey"
 $result = choco list -lo autohotkey
 If ($result.Split(' ').Count -eq 7) {
+	Write-Host -NoNewline "  => Upgrade "
+	Write-Host -ForegroundColor DarkYellow "AutoHotkey"
 	choco upgrade -y autohotkey
 } Else {
 	choco install -y autohotkey
