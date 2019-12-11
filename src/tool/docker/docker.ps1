@@ -8,3 +8,10 @@ If (Get-Command docker -errorAction SilentlyContinue) {
 } Else {
 	choco install -y --pre docker-desktop
 }
+
+<# Configure Docker ----------------------------------------------------------#>
+Write-Host -NoNewline " ==> Config "
+Write-Host -ForegroundColor Yellow "Docker"
+If (Get-Command docker -errorAction SilentlyContinue) {
+	Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+}
