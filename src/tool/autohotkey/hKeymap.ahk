@@ -1,11 +1,12 @@
 ; LAYER 0 (Default) -----------------------------------------------------------;
-LControl::CapsLock
-CapsLock::LControl
+; LControl::CapsLock
+; CapsLock::LControl
 
 #if GetKeyState("AppsKey", "P")
 `::`
 #if !GetKeyState("AppsKey", "P")
 `::Esc
++`::~
 
 ; LAYER 1 (Navigation) --------------------------------------------------------;
 #if GetKeyState("AppsKey", "P")
