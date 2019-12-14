@@ -43,6 +43,8 @@ k::Home
 l::PgUp
 .::PgDn
 
+BackSpace::Del
+
 ; LAYER 2 (Mouse) -------------------------------------------------------------;
 AppsKey & Up::MouseMove, 0, -10, , R
 AppsKey & Left::MouseMove, -10, 0, , R
