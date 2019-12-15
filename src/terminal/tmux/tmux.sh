@@ -4,7 +4,7 @@
 . ../../misc/hcolor.sh
 
 # Install tmux ----------------------------------------------------------------#
-echo -e " ==> Install ${YELLOW}tmux${END}"
+echo -e " ==> Install ${BR_YELLOW}tmux${END}"
 if [ -z "$(command -v tmux)" ]; then
 	if [ "$(uname -s)" == "Darwin" ]; then
 		brew install tmux
@@ -16,7 +16,7 @@ else
 fi
 
 # Tmuxinator
-echo -e "  => Install ${BR_YELLOW}tmuxinator${END}"
+echo -e "  => Install ${YELLOW}tmuxinator${END}"
 if [ -z "$(command -v tmuxinator)" ]; then
 	if [ "$(uname -s)" == "Darwin" ]; then
 		brew install tmuxinator
@@ -28,7 +28,7 @@ else
 fi
 
 # Configure tmux --------------------------------------------------------------#
-echo -e " ==> Config ${YELLOW}tmux${END}"
+echo -e " ==> Config ${BR_YELLOW}tmux${END}"
 if [ ! -z "$(command -v tmux)" ]; then
 	rm -rf ~/.tmux ~/.tmux.conf
 	mkdir -p ~/.tmux
