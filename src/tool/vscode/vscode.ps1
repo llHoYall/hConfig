@@ -28,3 +28,6 @@ Write-Host " extension"
 If ($null -eq (code --list-extensions | Select-String donjayamanne.githistory)) {
 	code --install-extension donjayamanne.githistory
 }
+
+<# VSCode Configuration File #>
+Copy-Item $PSScriptRoot/*.json -Destination "C:/Users/hoya1/AppData/Roaming/Code/User"
