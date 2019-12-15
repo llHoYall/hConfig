@@ -5,7 +5,8 @@ Write-Host " for AutoHotkey"
 
 <# Extention - AutoHotkey #>
 Write-Host -NoNewline "  => Config "
-Write-Host -ForegroundColor DARKYELLOW "AutoHotkey"
-If ((code --list-extensions | Select-String slevesque.vscode-autohotkey) -eq $False) {
+Write-Host -NoNewline -ForegroundColor DARKYELLOW "AutoHotkey"
+Write-Host " extension"
+If ($null -eq (code --list-extensions | Select-String slevesque.vscode-autohotkey)) {
 	code --install-extension slevesque.vscode-autohotkey
 }

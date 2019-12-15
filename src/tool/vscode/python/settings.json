@@ -1,0 +1,9 @@
+{
+  "python.autoComplete.addBrackets": true,
+  "python.autoComplete.extraPaths": [],
+  "python.formatting.blackArgs": ["--line-length", "100"],
+  "python.formatting.provider": "black",
+  "python.linting.pydocstyleArgs": [],
+  "python.linting.pylintArgs": [],
+  "python.pythonPath": ".venv\\Scripts\\python.exe"
+}

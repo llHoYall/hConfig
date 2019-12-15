@@ -1,0 +1,8 @@
+{
+	"editor.fontFamily": "'Cascadia Code', Consolas, 'Courier New', monospace",
+	"editor.fontLigatures": true,
+	"editor.rulers": [80],
+	"editor.tabSize": 2,
+	"extensions.ignoreRecommendations": true,
+	"files.trimTrailingWhitespace": true
+}

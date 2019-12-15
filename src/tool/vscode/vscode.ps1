@@ -15,14 +15,16 @@ Write-Host -ForegroundColor YELLOW "vscode"
 
 <# Extention - Git Lens #>
 Write-Host -NoNewline "  => Config "
-Write-Host -ForegroundColor DARKYELLOW "Git Lens"
-If ((code --list-extensions | Select-String eamodio.gitlens) -eq $False) {
+Write-Host -NoNewline -ForegroundColor DARKYELLOW "Git Lens"
+Write-Host " extension"
+If ($null -eq (code --list-extensions | Select-String eamodio.gitlens)) {
 	code --install-extension eamodio.gitlens
 }
 
 <# Extention - Git History #>
 Write-Host -NoNewline "  => Config "
-Write-Host -ForegroundColor DARKYELLOW "Git History"
-If ((code --list-extensions | Select-String donjayamanne.githistory) -eq $False) {
+Write-Host -NoNewline -ForegroundColor DARKYELLOW "Git History"
+Write-Host " extension"
+If ($null -eq (code --list-extensions | Select-String donjayamanne.githistory)) {
 	code --install-extension donjayamanne.githistory
 }
