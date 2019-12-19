@@ -48,14 +48,17 @@ Set-Alias -Name ga -Value Git-Add
 function Git-Add-All { git add --all $args }
 Set-Alias -Name gaa -Value Git-Add-All
 
-function Git-Branch { git branch $args }
+function Git-Branch { git branch -vv --abbrev=7 $args }
 Set-Alias -Name gb -Value Git-Branch
 
-function Git-Branch-Remotes { git branch -r$args }
+function Git-Branch-Remotes { git branch -r $args }
 Set-Alias -Name gbr -Value Git-Branch-Remotes
 
 function Git-Checkout { git checkout $args }
 Set-Alias -Name gco -Value Git-Checkout
+
+function Git-CherryPick { git cherry-pick $args }
+Set-Alias -Name gcp -Value Git-CherryPick
 
 function Git-Commit { git commit $args }
 Set-Alias -Name gcmm -Value Git-Commit
@@ -75,7 +78,7 @@ Set-Alias -Name gcfl -Value Git-Config-Local
 function Git-Diff { git diff $args }
 Set-Alias -Name gd -Value Git-Diff
 
-function Git-Fetch { git fetch $args }
+function Git-Fetch { git fetch -p $args }
 Set-Alias -Name gf -Value Git-Fetch
 
 function Git-Help { git help $args }
@@ -90,13 +93,13 @@ Set-Alias -Name glge -Value Git-Log-Extended
 function Git-Merge { git merge $args }
 Set-Alias -Name gmg -Value Git-Merge
 
-function Git-Pull { git pull $args }
+function Git-Pull { git pull -p $args }
 Set-Alias -Name gpl -Value Git-Pull
 
 function Git-Push { git push $args }
 Set-Alias -Name gpu -Value Git-Push
 
-function Git-Remote { git remote $args }
+function Git-Remote { git remote -v $args }
 Set-Alias -Name grm -Value Git-Remote
 
 function Git-Rebase { git rebase $args }
@@ -104,6 +107,9 @@ Set-Alias -Name grb -Value Git-Rebase
 
 function Git-Reset { git reset $args }
 Set-Alias -Name grst -Value Git-Reset
+
+function Git-Revert { git revert $args }
+Set-Alias -Name grv -Value Git-Revert
 
 function Git-Show { git show $args }
 Set-Alias -Name gsh -Value Git-Show
