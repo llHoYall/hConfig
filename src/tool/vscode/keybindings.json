@@ -3,5 +3,13 @@
 	{
 		"key": "alt+j",
 		"command": "editor.action.joinLines"
+	},
+	{
+		"key": "ctrl+alt+c",
+		"command": "highlightwords.removeAllHighlights"
+	},
+	{
+		"key": "ctrl+alt+h",
+		"command": "highlightwords.addHighlight"
 	}
 ]

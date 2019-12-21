@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build: example",
+			"type": "shell",
+			"options": {
+				"cwd": "${workspaceRoot}/"
+			},
+			"command": "mkdir -p build && cd build && cmake .. && make",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"label": "clean: example",
+			"type": "shell",
+			"command": "rm -rf **/build"
+		}
+	]
+}

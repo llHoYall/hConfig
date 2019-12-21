@@ -29,5 +29,13 @@ If ($null -eq (code --list-extensions | Select-String donjayamanne.githistory)) 
 	code --install-extension donjayamanne.githistory
 }
 
+<# Extention - Highlight Words #>
+Write-Host -NoNewline "  => Config "
+Write-Host -NoNewline -ForegroundColor DARKYELLOW "Highlight Words"
+Write-Host " extension"
+If ($null -eq (code --list-extensions | Select-String rsbondi.highlight-words)) {
+	code --install-extension rsbondi.highlight-words
+}
+
 <# VSCode Configuration File #>
-Copy-Item $PSScriptRoot/*.json -Destination "C:/Users/hoya1/AppData/Roaming/Code/User"
+Copy-Item $PSScriptRoot/*.json -Destination "$env:APPDATA/Code/User"

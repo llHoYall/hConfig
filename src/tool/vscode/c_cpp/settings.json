@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.mk": "makefile"
+  },
+  "C_Cpp.clang_format_fallbackStyle": "LLVM",
+  "C_Cpp.clang_format_path": "C:/Program Files/LLVM/bin/clang-format.exe",
+  "C_Cpp.intelliSenseCacheSize": 0
+}

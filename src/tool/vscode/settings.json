@@ -2,7 +2,9 @@
 	"editor.fontFamily": "'Cascadia Code', Consolas, 'Courier New', monospace",
 	"editor.fontLigatures": true,
 	"editor.rulers": [80],
+	"editor.scrollBeyondLastLine": false,
 	"editor.tabSize": 2,
 	"extensions.ignoreRecommendations": true,
-	"files.trimTrailingWhitespace": true
+	"files.trimTrailingWhitespace": true,
+	"git.autofetch": true
 }
