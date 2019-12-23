@@ -17,7 +17,7 @@ My development environment configuration.
 
 ### Package Manager
 
-- [Homebrew](https://github.com/llHoYall/hConfig/wiki/Homebrew)
+- [Homebrew](docs/package_manager/homebrew.md)
 - [Apt](https://github.com/llHoYall/hConfig/wiki/Apt)
 - [Chocolatey](https://github.com/llHoYall/hConfig/wiki/Chocolatey)
 - [Pacman](https://github.com/llHoYall/hConfig/wiki/Pacman)
