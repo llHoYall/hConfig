@@ -68,12 +68,12 @@ ZSH_DISABLE_COMPFIX=true
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	git
-#	fasd
-#	fzf
+	# git
+	# fasd
+	# fzf
 	tmux
-#	tmuxinator
-#	virtualenv
+	# tmuxinator
+	# virtualenv
 	zsh-syntax-highlighting
 	zsh-autosuggestions
 )
@@ -112,7 +112,6 @@ export EDITOR='nvim'
 
 # HoYa #########################################################################
 # LS_COLORS -------------------------------------------------------------------#
-# Sexy Color Palette
 export LS_COLORS=$LS_COLORS:"di=34:*.sh=32:*.ps1=32:ow=34:"
 
 # NVM -------------------------------------------------------------------------#
@@ -128,3 +127,32 @@ fi
 if [ -z "$TMUX" ]; then
 	tmux attach -t hTMUX || tmux new -s hTMUX
 fi
+
+# Aliasing --------------------------------------------------------------------#
+alias ga="git add"
+alias gaa="git add --all"
+alias gb="git branch -vv"
+alias gbr="git branch -r"
+alias gco="git checkout"
+alias gcp="git cherry-pick"
+alias gcmm="git commit"
+alias gcmm!="git commit --amend"
+alias gcf="git config"
+alias gcfg="git config --global"
+alias gcfl="git config --local"
+alias gd="git diff"
+alias gf="git fetch -p"
+alias gh="git help"
+alias glg="git log --oneline --graph -50"
+alias glge="git log --graph --pretty=format:'%Cred%h%Creset%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' -20"
+alias gmg="gig merge"
+alias gpl="git pull -p"
+alias gpu="git push"
+alias grm="git remote -v"
+alias grb="git rebase"
+alias grst="git reset"
+alias grv="git revert"
+alias gsh="git show"
+alias gsts="git stash"
+alias gst="git status"
+alias gt="git tag"
