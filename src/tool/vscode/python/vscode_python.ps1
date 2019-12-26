@@ -15,10 +15,10 @@ function VSCode_Python_Config($version, $requirements) {
 		<# Config Python Environment #>
 		If (Get-Command pyenv -errorAction SilentlyContinue) {
 			If ($null -eq $version) {
-				pyenv install 3.8.0-amd64
+				pyenv install -s 3.8.0-amd64
 				pyenv local 3.8.0-amd64
 			} Else {
-				pyenv install $version
+				pyenv install -s $version
 				pyenv local $version
 			}
 			pyenv rehash

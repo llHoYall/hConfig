@@ -1,4 +1,7 @@
 brew "mas"
+brew "pyenv"
+
+cask "google-chrome"
 
 mas "Magnet", id: 441258766
 mas "Amphetamine", id: 937984704
