@@ -130,6 +130,8 @@ if [ -z "$TMUX" ]; then
 fi
 
 # Aliasing --------------------------------------------------------------------#
+alias ll="ls -ahlF"
+
 alias ga="git add"
 alias gaa="git add --all"
 alias gb="git branch -vv"
