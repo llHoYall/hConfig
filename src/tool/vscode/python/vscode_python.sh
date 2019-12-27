@@ -18,26 +18,26 @@ function VSCode_Python_Config() {
 
 		# Config Python Environment #
 		if [ -n "$(command -v pyenv)" ]; then
-			if [ -z $1 ]; then
+			if [ -z $2 ]; then
 				pyenv install -s 3.9-dev
 				pyenv local 3.9-dev
 			else
-				pyenv install -s $1
-				pyenv local $1
+				pyenv install -s $2
+				pyenv local $2
 			fi
 			eval "$(pyenv init -)"
 
 			if [ ! -d ./.venv ]; then
 				python -m venv .venv
-				cp $(dirname $0)/activate.sh .
+				cp $(dirname $1)/activate.sh .
 			fi
 			source ./.venv/bin/activate
 
 			if [ -n $VIRTUAL_ENV ]; then
-				if [ -f ./$2 ]; then
-					pip install --install-option="-UI" -r $2 2> /dev/null
+				if [ -f ./$3 ]; then
+					pip install --install-option="-UI" -r $3 2> /dev/null
 				else
-					pip install --install-option="-UI" -r $(dirname $0)/requirements.txt 2> /dev/null
+					pip install --install-option="-UI" -r $(dirname $1)/requirements.txt 2> /dev/null
 				fi
 			fi
 		fi
@@ -45,11 +45,11 @@ function VSCode_Python_Config() {
 		if [ ! -d ./.vscode ]; then
 			mkdir .vscode
 		fi
-		cp $(dirname $0)/*.json ./.vscode
+		cp $(dirname $1)/*.json ./.vscode
 	else
 		echo "     Not installed"
 	fi
 }
 
 # Run Script ------------------------------------------------------------------#
-VSCode_Python_Config $1 $2
+VSCode_Python_Config $0 $1 $2 $3
