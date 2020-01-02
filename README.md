@@ -11,7 +11,7 @@ My development environment configuration.
 ### Tips
 
 - [MAC](https://github.com/llHoYall/hConfig/wiki/MAC-Tips)
-- [Linux](https://github.com/llHoYall/hConfig/wiki/Linux-Tips)
+- [Linux](docs/tips/linux.md)
   - [Commands](https://github.com/llHoYall/hConfig/wiki/GNU-Commands)
 - [Windows](docs/tips/windows.md)
 
