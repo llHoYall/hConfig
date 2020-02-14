@@ -12,7 +12,7 @@ My development environment configuration.
 
 - [MAC](https://github.com/llHoYall/hConfig/wiki/MAC-Tips)
 - [Linux](docs/tips/linux.md)
-  - [Commands](https://github.com/llHoYall/hConfig/wiki/GNU-Commands)
+  - [Commands](docs/tips/linux_commands.md)
 - [Windows](docs/tips/windows.md)
 
 ### Package Manager
