@@ -136,6 +136,10 @@ Kernel or Process에서 다른 Process에 어떤 event가 발생되었는지를 
 
 Inter-Process Communication
 
-1. Pipe
+1. File
 2. Message Queue
 3. Shared Memory
+4. Pipe
+5. Signal
+6. Semaphore
+7. Socket
