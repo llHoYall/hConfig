@@ -64,6 +64,53 @@ $ curl --request GET http://127.0.0.1 : GET command를 요청한다.
 $ curl -X GET http://127.0.0.1 : GET command를 요청한다.
 ```
 
+## date
+
+Display the current time in the given FORMAT, or set the system date.
+
+```
+$ date [OPTION]... [+FORMAT]
+$ date [-u|--utc|--universal] [MMDDhhmm[[CC]YY][.ss]]
+[OPTION]
+  --help
+  --version
+[FORMAT]
+  %a : locale's abbreviated weekday name
+  %A : locale's full weekday name
+  %b : locale's abbreviated month name
+  %B : locale's full month name
+  %c : locale's date and time
+  %C : century
+  %d : day of month
+  %D : date
+  %e : space padded day of month
+  %F : full date
+  %H : hour (0 ~ 23)
+  %I : hour (1 ~ 12)
+  %j : day of year
+  %m : month (1 ~ 12)
+  %M : minute (0 ~ 59)
+  %n : newline
+  %p : locale's equivalent of either AM or PM
+  %P : like %p, but lower case
+  %s : seconds since 1970-01-01 00:00:00 UTC
+  %S : second (0 ~ 60)
+  %t : tab
+  %T : time
+  %u : day of week (1 ~ 7)
+  %w : day of week (0 ~ 6)
+  %x : locale's date representation
+  %X : locale's time representation
+  %y : last two digits of year
+  %Z : alphabetic time zone abbreviation
+By default, date pads numeric fields with zeroes. The following optional flags may follow '%'.
+  - : do not padd the field
+  _ : pad with spaces
+  0 : pad with zeros
+  ^ : use upper case
+  # : use opposite case
+```
+
 ## find
 
 Search for files in a directory hierarchy
@@ -87,8 +134,8 @@ $ find [-H] [-L] [-P] [-Olevel] [-D debugopts] [PATH...] [EXPRESSION]
     stat
     tree
   -d, -depth    : Process each directory's contents before the directory itself.
-  -name pattern : Base of file name matches shell pattern.
-  -type c       : File is of type c. To search for more than one type at once, you can supply the combined list of type letters separated by a comma ','.
+  -name PATTERN : Base of file name matches shell pattern.
+  -type C       : File is of type C. To search for more than one type at once, you can supply the combined list of type letters separated by a comma ','.
     b   block (buffered special)
     c   character (unbuffered special)
     d   directory
@@ -105,6 +152,9 @@ Ex)
   $ find <PATH> -name <TARGET> : 지정한 경로 및 하위 경로에서 file을 찾는다.
   $ find <PATH> -name <TARGET> -type d : 지정한 경로에서 directory를 찾는다.
 ```
+
+-mtime
+-exec
 
 ## grep
 
@@ -225,6 +275,27 @@ $ ls [OPTIONS]... [FILE]...
       --version
 ```
 
+## mkdir
+
+Create the directory(ies), if they do not already exist.
+
+```
+$ mkdir [OPTION]... DIRECTORY...
+  -m, --mode=MODE : Set file mode (as in chmod)
+  -p, --parents   : No error if existing, make parent directories as neede
+  -v, --verbose   : Print a message for each created directory
+      --help
+      --version
+```
+
+## ping
+
+Send ICMP ECHO_REQUEST to network hosts.
+
+```
+$ ping [-aAbBdDfhLnOqrRUvV46] [-c COUNT] [-F FLOWLABEL] [-i INTERVAL] [-I INTERFACE] [-l PRELOAD] [-m MARK] [-M          PMTUDISC_OPTION] [-N NODEINFO_OPTION] [-w DEADLINE] [-W TIMEOUT] [-p PATTERN] [-Q TOS] [-s PACKETSIZE]  [-S SNDBUF] [-t TTL] [-T TIMESTAMP_OPTION] [hop ...] DESTINATION
+```
+
 ## ps
 
 Report a snapshot of the current processes.
@@ -268,6 +339,31 @@ $ tail --lines=# <FILE> : File에서 마지막 #개의 line을 출력한다.
 $ tail -n # <FILE> : File에서 마지막 #개의 line을 출력한다.
 $ tail -n +# <FILE> : File에서 처음 #개의 line을 제외하고 모두 출력한다.
 ```
+
+## tar
+
+GNU `tar` saves many files together into a single tape or disk archive, and can restore individual files from the archive.
+
+```
+$ tar [OPTION...] [FILE]...
+Main Operation Mode
+  -c, --create                    : Create a new archive
+  -x, --extract, --get            : extract files from an archive
+Device Selection and Switching
+  -f, --file=ARCHIVE              : Use archive file or device ARCHIVE
+Compression Options
+  -z, --gzip, --gunzip, --ungzip  : Filter the archive through gzip
+Informative Output
+  -v, --verbose                   : Verbosely list files processed
+Other Options
+  -?, --help
+      --usage
+      --version
+Ex)
+  $ tar -cvzf <FILE...>
+  $ tar -xvzf <FILE...>
+```
+
 
 ## Wget
 
