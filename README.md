@@ -11,9 +11,10 @@ My development environment configuration.
 ### Tips
 
 - [MAC](https://github.com/llHoYall/hConfig/wiki/MAC-Tips)
-- [Linux](docs/tips/linux.md)
-  - [Commands](docs/tips/linux_commands.md)
-- [Windows](docs/tips/windows.md)
+* [Linux](docs/tips/linux.md)
+  + [Commands](docs/tips/linux_commands.md)
+* [Windows](docs/tips/windows.md)
+  + [Commands](docs/tips/windows_commands.md)
 
 ### Package Manager
 
