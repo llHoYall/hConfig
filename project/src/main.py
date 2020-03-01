@@ -3,20 +3,21 @@ import PyQt5
 from PyQt5.QtCore import QSettings
 from PyQt5.QtGui import QIcon, QKeySequence
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QShortcut, QVBoxLayout, QTabWidget
-from windows import Windows
-from mac import Mac
-from linux import Linux
+from windows_ui import Windows
+from mac_ui import Mac
+from linux_ui import Linux
+
 
 MAJOR_VERSION = 0
 MINOR_VERSION = 0
-PATCH_VERSION = 1
+PATCH_VERSION = 2
 
 
 class HCongfig(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.tabs = QTabWidget(self)
+        self.tabs = QTabWidget()
 
         self.shortcut_set()
         self.init_ui()

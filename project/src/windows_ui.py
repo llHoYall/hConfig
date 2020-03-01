@@ -2,12 +2,15 @@ import sys
 import os
 import ctypes
 import winreg
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QTextEdit
+from windows.chocolatey import Chocolatey
 
 
 class Windows(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
+
+        self.log_te = QTextEdit()
 
         self.init_ui()
 
@@ -22,11 +25,14 @@ class Windows(QWidget):
             version += "[admin]"
         version_info.setText(version)
 
-        self.check_system_privilege()
+        # Logging
+        self.log_te.setReadOnly(True)
 
         # Layout
         win_vlayout = QVBoxLayout()
         win_vlayout.addWidget(version_info)
+        win_vlayout.addWidget(Chocolatey(self))
+        win_vlayout.addWidget(self.log_te)
 
         self.setLayout(win_vlayout)
 
@@ -36,7 +42,6 @@ class Windows(QWidget):
             product_name = winreg.QueryValueEx(key, r"ProductName")[0]
             release_id = winreg.QueryValueEx(key, r"ReleaseID")[0]
             current_build = winreg.QueryValueEx(key, r"CurrentBuild")[0]
-
         return (product_name, release_id, current_build)
 
     def check_system_privilege(self):
@@ -49,4 +54,3 @@ if __name__ == "__main__":
     ex.setWindowTitle("HoYa's Configurator - Windows")
     ex.show()
     sys.exit(APP.exec_())
-
