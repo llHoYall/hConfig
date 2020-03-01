@@ -1,0 +1,9 @@
+{
+  "editor.tabSize": 4,
+  "python.formatting.blackArgs": ["--line-length", "100"],
+  "python.formatting.provider": "black",
+  "python.pythonPath": ".venv\\Scripts\\python.exe",
+  "[python]": {
+    "editor.formatOnSave": true
+  }
+}
