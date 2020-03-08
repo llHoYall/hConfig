@@ -6,6 +6,6 @@
 **/*.pyo
 
 ## PyInstaller
-spec/
-build/
-dist/
+**/spec/
+**/build/
+**/dist/
