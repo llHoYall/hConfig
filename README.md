@@ -15,6 +15,7 @@ My development environment configuration.
   + [Commands](docs/tips/linux_commands.md)
 * [Windows](docs/tips/windows.md)
   + [Commands](docs/tips/windows_commands.md)
+  + [Shortcuts](docs/tips/windows_shortcuts.md)
 
 ### Package Manager
 
