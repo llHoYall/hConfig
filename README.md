@@ -30,6 +30,11 @@ My development environment configuration.
 - [WSL](docs/shell/wsl.md)
 - [zsh](docs/shell/zsh.md)
 
+## Language
+
+* [Python]
+  + [Jupyter](docs/language/python/jupyter.md)
+
 ## Tools
 
 - [iTerm2](https://github.com/llHoYall/hConfig/wiki/iTerm2)
