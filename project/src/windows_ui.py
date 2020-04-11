@@ -4,6 +4,7 @@ import ctypes
 import winreg
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QTextEdit
 from windows.chocolatey import Chocolatey
+from common.font import Font
 
 
 class Windows(QWidget):
@@ -32,6 +33,7 @@ class Windows(QWidget):
         win_vlayout = QVBoxLayout()
         win_vlayout.addWidget(version_info)
         win_vlayout.addWidget(Chocolatey(self))
+        win_vlayout.addWidget(Font(self))
         win_vlayout.addWidget(self.log_te)
 
         self.setLayout(win_vlayout)

@@ -1,5 +1,6 @@
 import sys
 import os
+import ctypes
 from shutil import which
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QLabel, QPushButton
@@ -19,52 +20,73 @@ class Chocolatey(QWidget):
         self.worker.endSignal.connect(self.worker_end)
 
         self.label = QLabel()
+        self.state_label = QLabel()
         self.install_btn = QPushButton("Install")
         self.upgrade_btn = QPushButton("Upgrade")
+        self.uninstall_btn = QPushButton("Uninstall")
+        self.config_btn = QPushButton("Config")
 
         self.init_ui()
-        self.refresh_label()
+        self.refresh_ui()
 
     def init_ui(self):
         self.label.setFixedWidth(defines.SIZE_LABEL)
 
-        state_label = QLabel("Installed" if self.check() else "Not Installed")
-        state_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        self.state_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
 
         self.install_btn.clicked.connect(self.install)
         self.upgrade_btn.clicked.connect(self.upgrade)
-        config_btn = QPushButton("Config")
-        config_btn.setEnabled(False)
+        self.uninstall_btn.clicked.connect(self.uninstall)
 
         choco_hlayout = QHBoxLayout()
         choco_hlayout.addWidget(self.label)
-        choco_hlayout.addWidget(state_label)
-        choco_hlayout.setStretchFactor(state_label, 3)
+        choco_hlayout.addWidget(self.state_label)
+        choco_hlayout.setStretchFactor(self.state_label, 3)
         choco_hlayout.addWidget(self.install_btn)
         choco_hlayout.setStretchFactor(self.install_btn, 1)
         choco_hlayout.addWidget(self.upgrade_btn)
         choco_hlayout.setStretchFactor(self.upgrade_btn, 1)
-        choco_hlayout.addWidget(config_btn)
-        choco_hlayout.setStretchFactor(config_btn, 1)
+        choco_hlayout.addWidget(self.uninstall_btn)
+        choco_hlayout.setStretchFactor(self.uninstall_btn, 1)
+        choco_hlayout.addWidget(self.config_btn)
+        choco_hlayout.setStretchFactor(self.config_btn, 1)
 
         self.setLayout(choco_hlayout)
 
+    def refresh_ui(self):
+        self.refresh_label()
+        if not ctypes.windll.shell32.IsUserAnAdmin():
+            self.disable_ui()
+            self.state_label.setText("Run as Administrator")
+        else:
+            self.enable_ui()
+            self.state_label.setText("Installed" if self.check() else "Not Installed")
+
     def install(self):
-        if not self.check():
-            if self.parent():
-                self.parent().log_te.clear()
-            self.worker.run_b_command(
-                "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))",
-                "./",
-            )
-            self.refresh_label()
+        if self.parent():
+            self.parent().log_te.clear()
+        self.worker.run_b_command(
+            "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))",
+            "./",
+        )
+        self.refresh_ui()
 
     def upgrade(self):
-        if self.check():
-            if self.parent():
-                self.parent().log_te.clear()
-            self.worker.run_nb_command("choco upgrade -y chocolatey", "./")
-            self.refresh_label()
+        if self.parent():
+            self.parent().log_te.clear()
+        self.worker.run_nb_command("choco upgrade -y chocolatey", "./")
+        self.refresh_ui()
+
+    def uninstall(self):
+        if self.parent():
+            self.parent().log_te.clear()
+        script_path = os.path.abspath("script/system/package_manager")
+        self.worker.run_nb_command(
+            ["powershell", '. "./chocolatey.ps1";', "&Uninstall_Chocolatey"],
+            script_path,
+            is_shell=False,
+        )
+        self.refresh_ui()
 
     def check(self):
         return True if which("choco") is not None else False
@@ -88,17 +110,28 @@ class Chocolatey(QWidget):
             else:
                 print(msg)
 
-    def enable_ui(self, opt):
-        self.install_btn.setEnabled(opt)
-        self.upgrade_btn.setEnabled(opt)
+    def enable_ui(self):
+        if self.check():
+            self.install_btn.setEnabled(False)
+            self.upgrade_btn.setEnabled(True)
+            self.uninstall_btn.setEnabled(True)
+        else:
+            self.install_btn.setEnabled(True)
+            self.upgrade_btn.setEnabled(False)
+            self.uninstall_btn.setEnabled(False)
+        self.config_btn.setEnabled(False)
+
+    def disable_ui(self):
+        self.install_btn.setDisabled(True)
+        self.upgrade_btn.setDisabled(True)
+        self.uninstall_btn.setDisabled(True)
+        self.config_btn.setDisabled(True)
 
     def worker_start(self):
-        print("start")
-        self.enable_ui(False)
+        self.disable_ui()
 
     def worker_end(self):
-        print("end")
-        self.enable_ui(True)
+        self.enable_ui()
 
 
 if __name__ == "__main__":
