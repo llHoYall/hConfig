@@ -14,14 +14,14 @@ class Worker(QObject):
         self.stop_event = threading.Event()
         self.stop_event.set()
 
-    def run_nb_command(self, cmd, path, is_shell=True):
+    def run_nb_command(self, cmd, path=".", is_shell=True):
         self.startSignal.emit()
         self.stop_event.clear()
         threading.Thread(
             target=self._execute_command, args=(cmd, path, is_shell), daemon=True
         ).start()
 
-    def run_b_command(self, cmd, path):
+    def run_b_command(self, cmd, path="."):
         self.startSignal.emit()
         self.stop_event.clear()
         proc = subprocess.Popen(

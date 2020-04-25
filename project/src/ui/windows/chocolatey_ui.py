@@ -19,8 +19,10 @@ from common.worker import Worker
 
 
 PROGRAM_LIST = [
-    {"primary": "chocolatey", "secondary": []},
-    {"primary": "font", "secondary": ["Cascadia Code"]},
+    {"primary": "Chocolatey", "secondary": []},
+    {"primary": "Google Chrome", "secondary": []},
+    {"primary": "Firefox", "secondary": []},
+    {"primary": "Font", "secondary": ["Cascadia Code"]},
 ]
 
 
@@ -122,8 +124,10 @@ class ChocolateyUI(QWidget):
             cmd = "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
         elif self.primary_cmb.currentText() == "font":
             cmd = "choco install -y cascadiacode"
-        path = "./"
-        self.worker.run_nb_command(cmd, path)
+        else:
+            program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
+            cmd = f"choco install -y {program}"
+        self.worker.run_nb_command(cmd)
         self.update_ui("install")
 
     def upgrade(self):
@@ -133,14 +137,15 @@ class ChocolateyUI(QWidget):
         if self.primary_cmb.currentText() == "font":
             cmd += "cascadiacode"
         else:
-            cmd += self.primary_cmb.currentText()
-        path = "./"
-        self.worker.run_nb_command(cmd, path)
+            program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
+            cmd += program
+        self.worker.run_nb_command(cmd)
         self.update_ui("upgrade")
 
     def uninstall(self):
         if self.parent():
             self.parent().log_te.clear()
+        is_shell = True
         if self.primary_cmb.currentText() == "chocolatey":
             cmd = ["powershell", '. "./chocolatey.ps1";', "&Uninstall_Chocolatey"]
             path = os.path.abspath("script/system/package_manager")
@@ -148,7 +153,9 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText() == "font":
             cmd = "choco uninstall -y cascadiacode"
             path = "./"
-            is_shell = True
+        else:
+            program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
+            cmd = f"choco uninstall -y {program}"
         self.worker.run_nb_command(cmd, path, is_shell)
         self.update_ui("uninstall")
 
@@ -161,10 +168,14 @@ class ChocolateyUI(QWidget):
             return True if which("choco") is not None else False
         elif self.primary_cmb.currentText() == "font":
             return True if os.path.exists(r"C:\ProgramData\chocolatey\lib\cascadiacode") else False
+        else:
+            program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
+            path = rf"C:\ProgramData\chocolatey\lib\{program}"
+            return True if os.path.exists(path) else False
 
     def get_version(self):
         if which("choco"):
-            return self.worker.run_b_command("choco --version", "./")
+            return self.worker.run_b_command("choco --version")
         return ""
 
     def set_secondary(self):
