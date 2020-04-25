@@ -1,16 +1,18 @@
 import sys
+import os
 import PyQt5
 from PyQt5.QtCore import QSettings
 from PyQt5.QtGui import QIcon, QKeySequence
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QShortcut, QVBoxLayout, QTabWidget
-from windows_ui import Windows
-from mac_ui import Mac
-from linux_ui import Linux
+
+from ui.windows_ui import Windows
+from ui.mac_ui import Mac
+from ui.linux_ui import Linux
 
 
 MAJOR_VERSION = 0
-MINOR_VERSION = 0
-PATCH_VERSION = 2
+MINOR_VERSION = 1
+PATCH_VERSION = 1
 
 
 class HCongfig(QMainWindow):

@@ -3,8 +3,9 @@ import os
 import ctypes
 import winreg
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QTextEdit
-from windows.chocolatey import Chocolatey
-from common.font import Font
+
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+from ui.windows.chocolatey_ui import ChocolateyUI
 
 
 class Windows(QWidget):
@@ -23,7 +24,7 @@ class Windows(QWidget):
             version[0], version[1], version[2]
         )
         if self.check_system_privilege():
-            version += "[admin]"
+            version += " [admin]"
         version_info.setText(version)
 
         # Logging
@@ -32,8 +33,7 @@ class Windows(QWidget):
         # Layout
         win_vlayout = QVBoxLayout()
         win_vlayout.addWidget(version_info)
-        win_vlayout.addWidget(Chocolatey(self))
-        win_vlayout.addWidget(Font(self))
+        win_vlayout.addWidget(ChocolateyUI(self))
         win_vlayout.addWidget(self.log_te)
 
         self.setLayout(win_vlayout)

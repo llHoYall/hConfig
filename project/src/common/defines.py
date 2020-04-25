@@ -1,1 +1,0 @@
-SIZE_LABEL = 150

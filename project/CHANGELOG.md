@@ -5,3 +5,16 @@ All notable changes to this project will be documented in this file.
 ### Added
 * Project creation
 * Project configuration
+
+## [v0.0.2] - 2020-03-01
+### Added
+* Chocolatey on Windows
+
+## [v0.1.0] - 2020-04-24
+### Changed
+* Integrated chocolatey architecture
+
+## [v0.1.1] - 2020-04-25
+### Added
+* Firefox on Windows
+* Chrome on Windows
