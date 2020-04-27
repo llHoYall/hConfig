@@ -180,7 +180,7 @@ class ChocolateyUI(QWidget):
             self.parent().log_te.clear()
         is_shell = True
         if self.primary_cmb.currentText().lower() == "chocolatey":
-            cmd = ["powershell", '. "./chocolatey.ps1";', "&Uninstall_Chocolatey"]
+            cmd = ["powershell", '. "./chocolatey.ps1";', "&Chocolatey_Uninstall"]
             path = os.path.abspath("script/system/package_manager")
             is_shell = False
         elif self.primary_cmb.currentText().lower() == "font":

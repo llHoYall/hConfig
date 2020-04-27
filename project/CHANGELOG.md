@@ -22,3 +22,7 @@ All notable changes to this project will be documented in this file.
 ## [v0.1.2] - 2020-04-27
 ### Added
 * git on Windows
+
+## [v0.1.3] - 2020-04-27
+### Fixed
+* Chocolatey script on Windows

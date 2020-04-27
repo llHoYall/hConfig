@@ -1,7 +1,7 @@
 #Requires -RunAsAdministrator
 
 <# Uninstall Chocolatey ------------------------------------------------------#>
-function Uninstall_Chocolatey1 {
+function Chocolatey_Uninstall {
   # Check Chocolatey existing
   if (!$env:ChocolateyInstall) {
     Write-Warning "The ChocolateyInstall environment variable was not found. `n Chocolatey is not detected as installed. Nothing to do"
