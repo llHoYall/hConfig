@@ -1,20 +1,7 @@
 #Requires -RunAsAdministrator
 
-<# Install Git ---------------------------------------------------------------#>
-function Git_Install() {
-	Write-Host -NoNewline " ==> Install "
-	Write-Host -ForegroundColor Yellow "Git"
-	If (Get-Command git -ErrorAction SilentlyContinue) {
-		Write-Host -NoNewline "  => Upgrade "
-		Write-Host -ForegroundColor DarkYellow "Git"
-		choco upgrade -y git
-	} Else {
-		choco install -y git
-	}
-}
-
 <# Configure Git -------------------------------------------------------------#>
-function Git_Config() {
+function Git_Config_Global() {
 	Write-Host -NoNewline " ==> Config "
 	Write-Host -ForegroundColor Yellow "Git"
 
@@ -56,6 +43,16 @@ function Git_Config() {
 	}
 }
 
-<# Run Script ----------------------------------------------------------------#>
-Git_Install
-Git_Config
+function Git_Config_Local_HoYa() {
+	Write-Host -NoNewline " ==> Config "
+	Write-Host -ForegroundColor Yellow "Git"
+	Write-Host -NoNewline "  => Config "
+	Write-Host -NoNewline -ForegroundColor DarkYellow "HoYa"
+	Write-Host ": llHoYall <hoya128@gmail.com>"
+
+	# user.name
+	git config --local user.name "llHoYall"
+
+	# user.email
+	git config --local user.email "hoya128@gmail.com"
+}

@@ -18,3 +18,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 * Firefox on Windows
 * Chrome on Windows
+
+## [v0.1.2] - 2020-04-27
+### Added
+* git on Windows
