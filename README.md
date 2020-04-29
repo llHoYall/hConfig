@@ -48,3 +48,4 @@ My development environment configuration.
 - [RegExp](https://github.com/llHoYall/hConfig/wiki/Regular-Expressions)
 - [AutoHotKey](docs/etc/autohotkey.md)
 - [TermColor](https://github.com/llHoYall/hConfig/wiki/Terminal-Color)
+- [Crawling](docs/etc/crawling.md)
