@@ -26,3 +26,7 @@ All notable changes to this project will be documented in this file.
 ## [v0.1.3] - 2020-04-27
 ### Fixed
 * Chocolatey script on Windows
+
+## [v0.1.4] - 2020-04-30
+### Added
+* Powershell on Windows

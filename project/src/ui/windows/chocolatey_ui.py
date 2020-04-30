@@ -1,6 +1,7 @@
 import os
 import sys
 import ctypes
+from glob import glob
 from shutil import which
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont
@@ -27,6 +28,7 @@ PROGRAM_LIST = [
     {"primary": "Google Chrome", "secondary": []},
     {"primary": "Firefox", "secondary": []},
     {"primary": "Font", "secondary": ["Cascadia Code"]},
+    {"primary": "Powershell", "secondary": ["core", "preview"]},
 ]
 
 
@@ -157,6 +159,9 @@ class ChocolateyUI(QWidget):
             cmd = "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
         elif self.primary_cmb.currentText().lower() == "font":
             cmd = "choco install -y cascadiacode"
+        elif self.primary_cmb.currentText().lower() == "powershell":
+            cmd = "choco install -y powershell-"
+            cmd += self.secondary_cmb.currentText().lower()
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             cmd = f"choco install -y {program}"
@@ -169,6 +174,9 @@ class ChocolateyUI(QWidget):
         cmd = "choco upgrade -y "
         if self.primary_cmb.currentText().lower() == "font":
             cmd += "cascadiacode"
+        elif self.primary_cmb.currentText().lower() == "powershell":
+            cmd += "powershell-"
+            cmd += self.secondary_cmb.currentText().lower()
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             cmd += program
@@ -186,6 +194,11 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "font":
             cmd = "choco uninstall -y cascadiacode"
             path = "./"
+        elif self.primary_cmb.currentText().lower() == "powershell":
+            cmd = "choco uninstall -y powershell-"
+            cmd += self.secondary_cmb.currentText().lower()
+            print(cmd)
+            return
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             cmd = f"choco uninstall -y {program}"
@@ -193,9 +206,7 @@ class ChocolateyUI(QWidget):
         self.update_ui("uninstall")
 
     def config(self):
-        if self.parent():
-            self.parent().log_te.clear()
-        is_shell = True
+        is_shell = False
         if self.primary_cmb.currentText().lower() == "git":
             if self.secondary_cmb.currentText().lower() == "global":
                 cmd = ["powershell", '. "./git.ps1";', "&Git_Config_Global"]
@@ -203,15 +214,26 @@ class ChocolateyUI(QWidget):
             elif self.secondary_cmb.currentText().lower() == "hoya":
                 cmd = ["powershell", '. "script/tool/git/git.ps1";', "&Git_Config_Local_HoYa"]
                 path = self.path_le.text()
-            is_shell = False
+        elif self.primary_cmb.currentText().lower() == "powershell":
+            cmd = ["powershell", '. "./powershell.ps1";', "&Powershell_Config"]
+            path = os.path.abspath("script/shell/powershell")
+        else:
+            return
+        if self.parent():
+            self.parent().log_te.clear()
         self.worker.run_b_command(cmd, path, is_shell)
         self.update_ui("config")
 
     def check_installed(self):
-        if self.primary_cmb.currentText() == "chocolatey":
+        if self.primary_cmb.currentText().lower() == "chocolatey":
             return True if which("choco") is not None else False
-        elif self.primary_cmb.currentText() == "font":
+        elif self.primary_cmb.currentText().lower() == "font":
             return True if os.path.exists(r"C:\ProgramData\chocolatey\lib\cascadiacode") else False
+        elif self.primary_cmb.currentText().lower() == "powershell":
+            if glob("C:/ProgramData/chocolatey/lib/powershell*"):
+                return True
+            else:
+                return False
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             path = rf"C:\ProgramData\chocolatey\lib\{program}"
