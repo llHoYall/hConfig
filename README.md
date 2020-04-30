@@ -26,8 +26,13 @@ My development environment configuration.
 
 ## Shell
 
+- Windows Commands
+  - [Script](docs/shell/cmd_script.md)
+  - [Color](docs/shell/cmd_color.md)
 - [Powershell](docs/shell/powershell.md)
 - [WSL](docs/shell/wsl.md)
+- Bash
+  - [Color](docs/shell/ansi_color.md)
 - [zsh](docs/shell/zsh.md)
 
 ## Language
