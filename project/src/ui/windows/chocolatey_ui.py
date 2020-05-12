@@ -19,6 +19,7 @@ from PyQt5.QtWidgets import (
 )
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+from common import util
 from common.worker import Worker
 
 
@@ -28,7 +29,7 @@ PROGRAM_LIST = [
     {"primary": "Google Chrome", "secondary": []},
     {"primary": "Firefox", "secondary": []},
     {"primary": "Font", "secondary": ["Cascadia Code"]},
-    {"primary": "Powershell", "secondary": ["core", "preview"]},
+    {"primary": "Powershell", "secondary": ["core", "preview", "old"]},
 ]
 
 
@@ -36,7 +37,7 @@ class ChocolateyUI(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.state = "INIT"
+        self._state = "INIT"
 
         self.worker = Worker()
         self.worker.outSignal.connect(self.log)
@@ -111,23 +112,22 @@ class ChocolateyUI(QWidget):
 
     def update_ui(self, condition):
         if not ctypes.windll.shell32.IsUserAnAdmin():
-            self.state = "DISABLED"
+            self._state = "DISABLED"
             self.state_label.setText("Run as Administrator")
             self.install_btn.setEnabled(False)
             self.upgrade_btn.setEnabled(False)
             self.uninstall_btn.setEnabled(False)
             self.config_btn.setEnabled(False)
-        elif self.state == "INIT" and condition == "start":
-            self.state == "INIT"
+        elif self._state == "INIT" or condition == "start":
             if self.check_installed():
-                self.state == "INSTALLED"
+                self._state = "INSTALLED"
                 self.state_label.setText("Installed")
                 self.install_btn.setEnabled(False)
                 self.upgrade_btn.setEnabled(True)
                 self.uninstall_btn.setEnabled(True)
                 self.config_btn.setEnabled(True)
             else:
-                self.state == "NOT_INSTALLED"
+                self._state = "NOT_INSTALLED"
                 self.state_label.setText("Not Installed")
                 self.install_btn.setEnabled(True)
                 self.upgrade_btn.setEnabled(False)
@@ -156,7 +156,7 @@ class ChocolateyUI(QWidget):
         if self.parent():
             self.parent().log_te.clear()
         if self.primary_cmb.currentText().lower() == "chocolatey":
-            cmd = "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
+            cmd = "powershell Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
         elif self.primary_cmb.currentText().lower() == "font":
             cmd = "choco install -y cascadiacode"
         elif self.primary_cmb.currentText().lower() == "powershell":
@@ -188,40 +188,40 @@ class ChocolateyUI(QWidget):
             self.parent().log_te.clear()
         is_shell = True
         if self.primary_cmb.currentText().lower() == "chocolatey":
-            cmd = ["powershell", '. "./chocolatey.ps1";', "&Chocolatey_Uninstall"]
-            path = os.path.abspath("script/system/package_manager")
+            script = util.resource_path("script/system/package_manager/chocolatey.ps1")
+            cmd = 'powershell -command "&{' + f". {script}; Chocolatey_Uninstall" + '}"'
             is_shell = False
         elif self.primary_cmb.currentText().lower() == "font":
             cmd = "choco uninstall -y cascadiacode"
-            path = "./"
         elif self.primary_cmb.currentText().lower() == "powershell":
             cmd = "choco uninstall -y powershell-"
             cmd += self.secondary_cmb.currentText().lower()
-            print(cmd)
-            return
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             cmd = f"choco uninstall -y {program}"
-        self.worker.run_nb_command(cmd, path, is_shell)
+        self.worker.run_nb_command(cmd, is_shell=is_shell)
         self.update_ui("uninstall")
 
     def config(self):
-        is_shell = False
+        path = "."
         if self.primary_cmb.currentText().lower() == "git":
+            script = util.resource_path("script/tool/git/git.ps1")
             if self.secondary_cmb.currentText().lower() == "global":
-                cmd = ["powershell", '. "./git.ps1";', "&Git_Config_Global"]
-                path = os.path.abspath("script/tool/git")
+                cmd = 'powershell -command "&{' + f". {script}; Git_Config_Global" + '}"'
             elif self.secondary_cmb.currentText().lower() == "hoya":
-                cmd = ["powershell", '. "script/tool/git/git.ps1";', "&Git_Config_Local_HoYa"]
+                cmd = 'powershell -command "&{' + f". {script}; Git_Config_Local_HoYa" + '}"'
                 path = self.path_le.text()
         elif self.primary_cmb.currentText().lower() == "powershell":
-            cmd = ["powershell", '. "./powershell.ps1";', "&Powershell_Config"]
-            path = os.path.abspath("script/shell/powershell")
+            script = util.resource_path("script/shell/powershell/powershell.ps1")
+            if self.secondary_cmb.currentText().lower() == "old":
+                cmd = 'powershell -command "&{' + f". {script}; Powershell_Config" + '}"'
+            else:
+                cmd = 'pwsh -command "&{' + f". {script}; Powershell_Config" + '}"'
         else:
             return
         if self.parent():
             self.parent().log_te.clear()
-        self.worker.run_b_command(cmd, path, is_shell)
+        self.worker.run_nb_command(cmd, path)
         self.update_ui("config")
 
     def check_installed(self):

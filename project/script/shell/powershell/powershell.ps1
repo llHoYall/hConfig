@@ -2,12 +2,23 @@
 
 <# Configure Powershell ------------------------------------------------------#>
 function Powershell_Config() {
+  Write-Host -NoNewline " ==> Config "
+  Write-Host -ForegroundColor Yellow "PowerShell"
+
+  <# NuGet PackageProvider #>
+  Write-Host -NoNewline "  => Install "
+  Write-Host -NoNewline -ForegroundColor DarkYellow "NuGet"
+  Write-Host " PackageProvider"
+  If (!(Get-PackageProvider -ListAvailable -Name NuGet -ErrorAction SilentlyContinue)) {
+    Install-PackageProvider -Name NuGet -Force
+  }
+
   <# Posh-Git Module #>
   Write-Host -NoNewline "  => Install "
   Write-Host -NoNewline -ForegroundColor DarkYellow "posh-git"
   Write-Host " Module"
   If (Get-Module -ListAvailable -Name posh-git) {
-    Write-Host "     Already installed."
+    Update-Module -Name posh-git -Force
   } Else {
     Install-Module -Name posh-git -Scope CurrentUser -Force
   }
@@ -17,20 +28,20 @@ function Powershell_Config() {
   Write-Host -NoNewline -ForegroundColor DarkYellow "PSColor"
   Write-Host " Module"
   If (Get-Module -ListAvailable -Name PSColor) {
-    Write-Host "     Already installed."
+    Update-Module -Name PSColor -Force
   } Else {
     Install-Module -Name PSColor -Scope CurrentUser -Force
   }
 
-  <# PSReadLine Module #>
-  Write-Host -NoNewline "  => Install "
-  Write-Host -NoNewline -ForegroundColor DarkYellow "PSReadLine"
-  Write-Host " Module"
-  If (Get-Module -ListAvailable -Name PSReadLine) {
-    Write-Host "     Already installed."
-  } Else {
-    Install-Module -Name PSReadLine -Scope CurrentUser -Force
-  }
+  <# PSReadLine Module - Default installed #>
+  # Write-Host -NoNewline "  => Install "
+  # Write-Host -NoNewline -ForegroundColor DarkYellow "PSReadLine"
+  # Write-Host -NoNewLine " Module"
+  # If (Get-Module -ListAvailable -Name PSReadLine) {
+  #   Update-Module -Name PSReadLine -Scope CurrentUser -Force
+  # } Else {
+  #   Install-Module -Name PSReadLine -Scope CurrentUser -Force
+  # }
 
   <# PowerShell Profile #>
   Write-Host -NoNewline "  => Config "
