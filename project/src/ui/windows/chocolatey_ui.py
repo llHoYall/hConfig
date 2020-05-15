@@ -30,6 +30,7 @@ PROGRAM_LIST = [
     {"primary": "Firefox", "secondary": []},
     {"primary": "Font", "secondary": ["Cascadia Code"]},
     {"primary": "Powershell", "secondary": ["core", "preview", "old"]},
+    {"primary": "Windows Terminal", "secondary": ["HoYa", "WDC"]},
 ]
 
 
@@ -162,6 +163,8 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "powershell":
             cmd = "choco install -y powershell-"
             cmd += self.secondary_cmb.currentText().lower()
+        elif self.primary_cmb.currentText().lower() == "windows terminal":
+            cmd = "choco install -y microsoft-windows-terminal"
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             cmd = f"choco install -y {program}"
@@ -177,6 +180,8 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "powershell":
             cmd += "powershell-"
             cmd += self.secondary_cmb.currentText().lower()
+        elif self.primary_cmb.currentText().lower() == "windows terminal":
+            cmd += "microsoft-windows-terminal"
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             cmd += program
@@ -196,6 +201,8 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "powershell":
             cmd = "choco uninstall -y powershell-"
             cmd += self.secondary_cmb.currentText().lower()
+        elif self.primary_cmb.currentText().lower() == "windows terminal":
+            cmd = "choco uninstall -y microsoft-windows-terminal"
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             cmd = f"choco uninstall -y {program}"
@@ -217,7 +224,17 @@ class ChocolateyUI(QWidget):
                 cmd = 'powershell -command "&{' + f". {script}; Powershell_Config" + '}"'
             else:
                 cmd = 'pwsh -command "&{' + f". {script}; Powershell_Config" + '}"'
+        elif self.primary_cmb.currentText().lower() == "windows terminal":
+            script = util.resource_path("script/terminal/windows_terminal/windows_terminal.ps1")
+            if self.secondary_cmb.currentText().lower() == "hoya":
+                cmd = 'powershell -command "&{' + f". {script}; WindowsTerminal_Config_HoYa" + '}"'
+            elif self.secondary_cmb.currentText().lower() == "wdc":
+                cmd = 'powershell -command "&{' + f". {script}; WindowsTerminal_Config_WDC" + '}"'
         else:
+            if self.parent() and self.parent().parent():
+                self.parent().parent().parent().parent().parent().statusBar().showMessage(
+                    "Nothing to configure"
+                )
             return
         if self.parent():
             self.parent().log_te.clear()
@@ -234,6 +251,9 @@ class ChocolateyUI(QWidget):
                 return True
             else:
                 return False
+        elif self.primary_cmb.currentText().lower() == "windows terminal":
+            path = rf"C:\ProgramData\chocolatey\lib\microsoft-windows-terminal"
+            return True if os.path.exists(path) else False
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             path = rf"C:\ProgramData\chocolatey\lib\{program}"
@@ -256,7 +276,7 @@ class ChocolateyUI(QWidget):
         self.update_ui("start")
 
     def log(self, msg):
-        msg = msg.strip()
+        msg = msg.rstrip()
         if msg != "":
             if self.parent():
                 self.parent().log_te.append(msg)

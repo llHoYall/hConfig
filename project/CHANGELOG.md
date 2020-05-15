@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v0.2.1] - 2020-05-13
+### Fixed
+* Microsoft Windows Terminal on Windows
+
 ## [v0.2.0] - 2020-05-03
 ### Fixed
 * Add script files to executable file

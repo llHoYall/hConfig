@@ -10,6 +10,7 @@ a = Analysis(['../src/main.py'],
                 ('../resource/logo.ico', './resource'),
                 ('../script/system/package_manager/chocolatey.ps1', './script/system/package_manager'),
                 ('../script/shell/powershell/*.ps1', './script/shell/powershell'),
+                ('../script/terminal/windows_terminal/*', './script/terminal/windows_terminal'),
                 ('../script/tool/git/git.ps1', './script/tool/git')
              ],
              hiddenimports=[],
