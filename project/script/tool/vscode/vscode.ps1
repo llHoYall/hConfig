@@ -1,41 +1,66 @@
-<# Install VSCode ------------------------------------------------------------#>
-Write-Host -NoNewline " ==> Install "
-Write-Host -ForegroundColor YELLOW "vscode"
-If (Get-Command code -errorAction SilentlyContinue) {
-	Write-Host -NoNewline "  => Upgrade "
-	Write-Host -ForegroundColor DarkYellow "vscode"
-	choco upgrade -y vscode
-} Else {
-	choco install -y vscode
-}
+#Requires -RunAsAdministrator
 
 <# Configure VSCode ----------------------------------------------------------#>
-Write-Host -NoNewline " ==> Config "
-Write-Host -ForegroundColor YELLOW "vscode"
+function VSCode_Config() {
+	Write-Host -NoNewline " ==> Config "
+	Write-Host -ForegroundColor Yellow "vscode"
 
-<# Extention - Git Lens #>
-Write-Host -NoNewline "  => Config "
-Write-Host -NoNewline -ForegroundColor DARKYELLOW "Git Lens"
-Write-Host " extension"
-If ($null -eq (code --list-extensions | Select-String eamodio.gitlens)) {
-	code --install-extension eamodio.gitlens
+	# Extention - C/C++
+	Write-Host -NoNewline "  => Config "
+	Write-Host -NoNewline -ForegroundColor DarkYellow "C/C++"
+	Write-Host " extension"
+	If ($null -eq (code --list-extensions | Select-String ms-vscode.cpptools)) {
+		code --install-extension ms-vscode.cpptools
+	}
+
+	# Extention - Python
+	Write-Host -NoNewline "  => Config "
+	Write-Host -NoNewline -ForegroundColor DarkYellow "Python"
+	Write-Host " extension"
+	If ($null -eq (code --list-extensions | Select-String ms-python.python)) {
+		code --install-extension ms-python.python
+	}
+
+	# Extention - PowerShell
+	Write-Host -NoNewline "  => Config "
+	Write-Host -NoNewline -ForegroundColor DarkYellow "PowerShell"
+	Write-Host " extension"
+	If ($null -eq (code --list-extensions | Select-String ms-vscode.powershell)) {
+		code --install-extension ms-vscode.powershell
+	}
+
+	# Extention - Git Lens
+	Write-Host -NoNewline "  => Config "
+	Write-Host -NoNewline -ForegroundColor DarkYellow "Git Lens"
+	Write-Host " extension"
+	If ($null -eq (code --list-extensions | Select-String eamodio.gitlens)) {
+		code --install-extension eamodio.gitlens
+	}
+
+	# Extention - Git History
+	Write-Host -NoNewline "  => Config "
+	Write-Host -NoNewline -ForegroundColor DarkYellow "Git History"
+	Write-Host " extension"
+	If ($null -eq (code --list-extensions | Select-String donjayamanne.githistory)) {
+		code --install-extension donjayamanne.githistory
+	}
+
+	# Extention - Highlight Words
+	Write-Host -NoNewline "  => Config "
+	Write-Host -NoNewline -ForegroundColor DarkYellow "Highlight Words"
+	Write-Host " extension"
+	If ($null -eq (code --list-extensions | Select-String rsbondi.highlight-words)) {
+		code --install-extension rsbondi.highlight-words
+	}
+
+	# Extention - Material Icon Theme
+	Write-Host -NoNewline "  => Config "
+	Write-Host -NoNewline -ForegroundColor DarkYellow "Material Icon Theme"
+	Write-Host " extension"
+	If ($null -eq (code --list-extensions | Select-String pkief.material-icon-theme)) {
+		code --install-extension pkief.material-icon-theme
+	}
+
+	<# VSCode Configuration File #>
+	Copy-Item $PSScriptRoot/*.json -Destination "$env:APPDATA/Code/User"
 }
-
-<# Extention - Git History #>
-Write-Host -NoNewline "  => Config "
-Write-Host -NoNewline -ForegroundColor DARKYELLOW "Git History"
-Write-Host " extension"
-If ($null -eq (code --list-extensions | Select-String donjayamanne.githistory)) {
-	code --install-extension donjayamanne.githistory
-}
-
-<# Extention - Highlight Words #>
-Write-Host -NoNewline "  => Config "
-Write-Host -NoNewline -ForegroundColor DARKYELLOW "Highlight Words"
-Write-Host " extension"
-If ($null -eq (code --list-extensions | Select-String rsbondi.highlight-words)) {
-	code --install-extension rsbondi.highlight-words
-}
-
-<# VSCode Configuration File #>
-Copy-Item $PSScriptRoot/*.json -Destination "$env:APPDATA/Code/User"

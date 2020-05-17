@@ -1,8 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v0.2.2] - 2020-05-17
+### Added
+* VSCode on Windows
+
 ## [v0.2.1] - 2020-05-13
-### Fixed
+### Added
 * Microsoft Windows Terminal on Windows
 
 ## [v0.2.0] - 2020-05-03

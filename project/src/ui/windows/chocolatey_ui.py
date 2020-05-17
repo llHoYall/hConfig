@@ -30,6 +30,7 @@ PROGRAM_LIST = [
     {"primary": "Firefox", "secondary": []},
     {"primary": "Font", "secondary": ["Cascadia Code"]},
     {"primary": "Powershell", "secondary": ["core", "preview", "old"]},
+    {"primary": "VSCode", "secondary": []},
     {"primary": "Windows Terminal", "secondary": ["HoYa", "WDC"]},
 ]
 
@@ -230,6 +231,9 @@ class ChocolateyUI(QWidget):
                 cmd = 'powershell -command "&{' + f". {script}; WindowsTerminal_Config_HoYa" + '}"'
             elif self.secondary_cmb.currentText().lower() == "wdc":
                 cmd = 'powershell -command "&{' + f". {script}; WindowsTerminal_Config_WDC" + '}"'
+        elif self.primary_cmb.currentText().lower() == "vscode":
+            script = util.resource_path("script/tool/vscode/vscode.ps1")
+            cmd = 'powershell -command "&{' + f". {script}; VSCode_Config" + '}"'
         else:
             if self.parent() and self.parent().parent():
                 self.parent().parent().parent().parent().parent().statusBar().showMessage(
@@ -285,6 +289,8 @@ class ChocolateyUI(QWidget):
 
     def worker_end(self):
         self.update_ui("start")
+        if self.parent() and self.parent().parent():
+            self.parent().parent().parent().parent().parent().statusBar().showMessage("Done")
 
 
 if __name__ == "__main__":
