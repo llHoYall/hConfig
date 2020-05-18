@@ -21,7 +21,7 @@ class Worker(QObject):
             target=self._execute_command, args=(cmd, path, is_shell), daemon=True
         ).start()
 
-    def run_b_command(self, cmd, path="."):
+    def run_b_command(self, cmd, path=".", is_shell=True):
         self.startSignal.emit()
         self.stop_event.clear()
         proc = subprocess.Popen(
@@ -30,7 +30,7 @@ class Worker(QObject):
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
-            shell=True,
+            shell=is_shell,
             universal_newlines=True,
         )
         outs = proc.communicate()[0]

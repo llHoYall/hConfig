@@ -7,5 +7,6 @@
 
 ## PyInstaller
 **/spec/
+!**/spec/hConfig.spec
 **/build/
 **/dist/

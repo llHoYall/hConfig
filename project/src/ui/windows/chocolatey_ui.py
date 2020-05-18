@@ -1,28 +1,39 @@
 import os
 import sys
 import ctypes
+from glob import glob
 from shutil import which
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import (
     QApplication,
     QWidget,
     QVBoxLayout,
     QHBoxLayout,
     QGroupBox,
+    QFileDialog,
     QLabel,
+    QLineEdit,
     QComboBox,
     QPushButton,
 )
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+from common import util
 from common.worker import Worker
 
 
 PROGRAM_LIST = [
     {"primary": "Chocolatey", "secondary": []},
-    {"primary": "Google Chrome", "secondary": []},
     {"primary": "Firefox", "secondary": []},
     {"primary": "Font", "secondary": ["Cascadia Code"]},
+    {"primary": "Git", "secondary": ["Global", "HoYa"]},
+    {"primary": "Google Chrome", "secondary": []},
+    {"primary": "Powershell", "secondary": ["core", "preview", "old"]},
+    {"primary": "pyenv", "secondary": []},
+    {"primary": "Q-Dir", "secondary": []},
+    {"primary": "VSCode", "secondary": []},
+    {"primary": "Windows Terminal", "secondary": ["HoYa", "WDC"]},
 ]
 
 
@@ -30,7 +41,7 @@ class ChocolateyUI(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.state = "INIT"
+        self._state = "INIT"
 
         self.worker = Worker()
         self.worker.outSignal.connect(self.log)
@@ -39,6 +50,10 @@ class ChocolateyUI(QWidget):
         self.primary_cmb = QComboBox()
         self.secondary_cmb = QComboBox()
         self.state_label = QLabel()
+
+        self.path_le = QLineEdit("C:\\")
+        self.path_btn = QPushButton("Select Path")
+
         self.install_btn = QPushButton("Install")
         self.upgrade_btn = QPushButton("Upgrade")
         self.uninstall_btn = QPushButton("Uninstall")
@@ -53,9 +68,17 @@ class ChocolateyUI(QWidget):
 
         self.state_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
 
+        self.path_btn.clicked.connect(self.select_path)
+
+        font = QFont()
+        font.setBold(True)
+        self.install_btn.setFont(font)
         self.install_btn.clicked.connect(self.install)
+        self.upgrade_btn.setFont(font)
         self.upgrade_btn.clicked.connect(self.upgrade)
+        self.uninstall_btn.setFont(font)
         self.uninstall_btn.clicked.connect(self.uninstall)
+        self.config_btn.setFont(font)
         self.config_btn.clicked.connect(self.config)
 
         label = (
@@ -64,66 +87,92 @@ class ChocolateyUI(QWidget):
             else "Chocolatey"
         )
 
-        choco_hlayout = QHBoxLayout()
-        choco_hlayout.addWidget(self.primary_cmb)
-        choco_hlayout.setStretchFactor(self.primary_cmb, 3)
-        choco_hlayout.addWidget(self.secondary_cmb)
-        choco_hlayout.setStretchFactor(self.secondary_cmb, 3)
-        choco_hlayout.addWidget(self.state_label)
-        choco_hlayout.setStretchFactor(self.state_label, 3)
-        choco_hlayout.addWidget(self.install_btn)
-        choco_hlayout.addWidget(self.upgrade_btn)
-        choco_hlayout.addWidget(self.uninstall_btn)
-        choco_hlayout.addWidget(self.config_btn)
+        choco_hlayout1 = QHBoxLayout()
+        choco_hlayout1.addWidget(self.primary_cmb)
+        choco_hlayout1.setStretchFactor(self.primary_cmb, 15)
+        choco_hlayout1.addWidget(self.secondary_cmb)
+        choco_hlayout1.setStretchFactor(self.secondary_cmb, 15)
+        choco_hlayout1.addWidget(self.state_label)
+        choco_hlayout1.setStretchFactor(self.state_label, 10)
+        choco_hlayout2 = QHBoxLayout()
+        choco_hlayout2.addWidget(self.path_le)
+        choco_hlayout2.setStretchFactor(self.path_le, 3)
+        choco_hlayout2.addWidget(self.path_btn)
+        choco_hlayout2.setStretchFactor(self.path_btn, 1)
+        choco_hlayout3 = QHBoxLayout()
+        choco_hlayout3.addWidget(self.install_btn)
+        choco_hlayout3.addWidget(self.upgrade_btn)
+        choco_hlayout3.addWidget(self.uninstall_btn)
+        choco_hlayout3.addWidget(self.config_btn)
+        choco_vlayout1 = QVBoxLayout()
+        choco_vlayout1.addLayout(choco_hlayout1)
+        choco_vlayout1.addLayout(choco_hlayout2)
+        choco_vlayout1.addLayout(choco_hlayout3)
         choco_group = QGroupBox(label)
-        choco_group.setLayout(choco_hlayout)
-        choco_vlayout = QVBoxLayout()
-        choco_vlayout.addWidget(choco_group)
-        self.setLayout(choco_vlayout)
+        choco_group.setLayout(choco_vlayout1)
+        choco_layout = QVBoxLayout()
+        choco_layout.addWidget(choco_group)
+        self.setLayout(choco_layout)
 
     def update_ui(self, condition):
         if not ctypes.windll.shell32.IsUserAnAdmin():
-            self.state = "DISABLED"
+            self._state = "DISABLED"
             self.state_label.setText("Run as Administrator")
             self.install_btn.setEnabled(False)
             self.upgrade_btn.setEnabled(False)
             self.uninstall_btn.setEnabled(False)
             self.config_btn.setEnabled(False)
-        elif self.state == "INIT" and condition == "start":
-            self.state == "INIT"
+        elif self._state == "INIT" or condition == "start":
             if self.check_installed():
-                self.state == "INSTALLED"
+                self._state = "INSTALLED"
                 self.state_label.setText("Installed")
                 self.install_btn.setEnabled(False)
                 self.upgrade_btn.setEnabled(True)
                 self.uninstall_btn.setEnabled(True)
                 self.config_btn.setEnabled(True)
             else:
-                self.state == "NOT_INSTALLED"
+                self._state = "NOT_INSTALLED"
                 self.state_label.setText("Not Installed")
                 self.install_btn.setEnabled(True)
                 self.upgrade_btn.setEnabled(False)
                 self.uninstall_btn.setEnabled(False)
                 self.config_btn.setEnabled(False)
-        elif condition == "install" or condition == "upgrade" or condition == "uninstall":
+        elif (
+            condition == "install"
+            or condition == "upgrade"
+            or condition == "uninstall"
+            or condition == "config"
+        ):
             if condition == "install":
                 self.state_label.setText("Installing...")
             elif condition == "upgrade":
                 self.state_label.setText("Upgrading...")
             elif condition == "uninstall":
                 self.state_label.setText("Uninstalling...")
+            elif condition == "config":
+                self.state_label.setText("Configuring...")
             self.install_btn.setEnabled(False)
             self.upgrade_btn.setEnabled(False)
             self.uninstall_btn.setEnabled(False)
             self.config_btn.setEnabled(False)
 
     def install(self):
+        self.log_status_bar("")
         if self.parent():
             self.parent().log_te.clear()
-        if self.primary_cmb.currentText() == "chocolatey":
-            cmd = "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
-        elif self.primary_cmb.currentText() == "font":
+        if self.primary_cmb.currentText().lower() == "chocolatey":
+            cmd = "powershell Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
+        elif self.primary_cmb.currentText().lower() == "font":
             cmd = "choco install -y cascadiacode"
+        elif self.primary_cmb.currentText().lower() == "powershell":
+            cmd = "choco install -y powershell-"
+            cmd += self.secondary_cmb.currentText().lower()
+        elif self.primary_cmb.currentText().lower() == "pyenv":
+            cmd = "choco install -y pyenv-win"
+        elif self.primary_cmb.currentText().lower() == "q-dir":
+            cmd = "choco install -y qdir"
+        elif self.primary_cmb.currentText().lower() == "windows terminal":
+            cmd = "choco install -y microsoft-windows-terminal"
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             cmd = f"choco install -y {program}"
@@ -131,11 +180,21 @@ class ChocolateyUI(QWidget):
         self.update_ui("install")
 
     def upgrade(self):
+        self.log_status_bar("")
         if self.parent():
             self.parent().log_te.clear()
         cmd = "choco upgrade -y "
-        if self.primary_cmb.currentText() == "font":
+        if self.primary_cmb.currentText().lower() == "font":
             cmd += "cascadiacode"
+        elif self.primary_cmb.currentText().lower() == "powershell":
+            cmd += "powershell-"
+            cmd += self.secondary_cmb.currentText().lower()
+        elif self.primary_cmb.currentText().lower() == "pyenv":
+            cmd += "pyenv-win"
+        elif self.primary_cmb.currentText().lower() == "q-dir":
+            cmd += "qdir"
+        elif self.primary_cmb.currentText().lower() == "windows terminal":
+            cmd += "microsoft-windows-terminal"
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             cmd += program
@@ -143,31 +202,86 @@ class ChocolateyUI(QWidget):
         self.update_ui("upgrade")
 
     def uninstall(self):
+        self.log_status_bar("")
         if self.parent():
             self.parent().log_te.clear()
         is_shell = True
-        if self.primary_cmb.currentText() == "chocolatey":
-            cmd = ["powershell", '. "./chocolatey.ps1";', "&Uninstall_Chocolatey"]
-            path = os.path.abspath("script/system/package_manager")
+        if self.primary_cmb.currentText().lower() == "chocolatey":
+            script = util.resource_path("script/system/package_manager/chocolatey.ps1")
+            cmd = 'powershell -command "&{' + f". {script}; Chocolatey_Uninstall" + '}"'
             is_shell = False
-        elif self.primary_cmb.currentText() == "font":
+        elif self.primary_cmb.currentText().lower() == "font":
             cmd = "choco uninstall -y cascadiacode"
-            path = "./"
+        elif self.primary_cmb.currentText().lower() == "powershell":
+            cmd = "choco uninstall -y powershell-"
+            cmd += self.secondary_cmb.currentText().lower()
+        elif self.primary_cmb.currentText().lower() == "pyenv":
+            cmd = "choco uninstall -y pyenv-win"
+        elif self.primary_cmb.currentText().lower() == "q-dir":
+            cmd = "choco uninstall -y qdir"
+        elif self.primary_cmb.currentText().lower() == "windows terminal":
+            cmd = "choco uninstall -y microsoft-windows-terminal"
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             cmd = f"choco uninstall -y {program}"
-        self.worker.run_nb_command(cmd, path, is_shell)
+        self.worker.run_nb_command(cmd, is_shell=is_shell)
         self.update_ui("uninstall")
 
     def config(self):
+        self.log_status_bar("")
+        path = "."
+        if self.primary_cmb.currentText().lower() == "git":
+            script = util.resource_path("script/tool/git/git.ps1")
+            if self.secondary_cmb.currentText().lower() == "global":
+                cmd = 'powershell -command "&{' + f". {script}; Git_Config_Global" + '}"'
+            elif self.secondary_cmb.currentText().lower() == "hoya":
+                cmd = 'powershell -command "&{' + f". {script}; Git_Config_Local_HoYa" + '}"'
+                path = self.path_le.text()
+        elif self.primary_cmb.currentText().lower() == "powershell":
+            script = util.resource_path("script/shell/powershell/powershell.ps1")
+            if self.secondary_cmb.currentText().lower() == "old":
+                cmd = 'powershell -command "&{' + f". {script}; Powershell_Config" + '}"'
+            else:
+                cmd = 'pwsh -command "&{' + f". {script}; Powershell_Config" + '}"'
+        elif self.primary_cmb.currentText().lower() == "pyenv":
+            script = util.resource_path("script/language/python/python.ps1")
+            cmd = 'powershell -command "&{' + f". {script}; Python_Config" + '}"'
+        elif self.primary_cmb.currentText().lower() == "vscode":
+            script = util.resource_path("script/tool/vscode/vscode.ps1")
+            cmd = 'powershell -command "&{' + f". {script}; VSCode_Config" + '}"'
+        elif self.primary_cmb.currentText().lower() == "windows terminal":
+            script = util.resource_path("script/terminal/windows_terminal/windows_terminal.ps1")
+            if self.secondary_cmb.currentText().lower() == "hoya":
+                cmd = 'powershell -command "&{' + f". {script}; WindowsTerminal_Config_HoYa" + '}"'
+            elif self.secondary_cmb.currentText().lower() == "wdc":
+                cmd = 'powershell -command "&{' + f". {script}; WindowsTerminal_Config_WDC" + '}"'
+        else:
+            self.log_status_bar("Nothing to configure")
+            return
         if self.parent():
             self.parent().log_te.clear()
+        self.worker.run_nb_command(cmd, path)
+        self.update_ui("config")
 
     def check_installed(self):
-        if self.primary_cmb.currentText() == "chocolatey":
+        if self.primary_cmb.currentText().lower() == "chocolatey":
             return True if which("choco") is not None else False
-        elif self.primary_cmb.currentText() == "font":
+        elif self.primary_cmb.currentText().lower() == "font":
             return True if os.path.exists(r"C:\ProgramData\chocolatey\lib\cascadiacode") else False
+        elif self.primary_cmb.currentText().lower() == "powershell":
+            if glob("C:/ProgramData/chocolatey/lib/powershell*"):
+                return True
+            else:
+                return False
+        elif self.primary_cmb.currentText().lower() == "windows terminal":
+            path = rf"C:\ProgramData\chocolatey\lib\microsoft-windows-terminal"
+            return True if os.path.exists(path) else False
+        elif self.primary_cmb.currentText().lower() == "pyenv":
+            path = rf"C:\ProgramData\chocolatey\lib\pyenv-win"
+            return True if os.path.exists(path) else False
+        elif self.primary_cmb.currentText().lower() == "q-dir":
+            path = rf"C:\ProgramData\chocolatey\lib\qdir"
+            return True if os.path.exists(path) else False
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             path = rf"C:\ProgramData\chocolatey\lib\{program}"
@@ -178,21 +292,32 @@ class ChocolateyUI(QWidget):
             return self.worker.run_b_command("choco --version")
         return ""
 
+    def select_path(self):
+        open_path = self.path_le.text() if self.path_le.text() else "C:\\"
+        fname = QFileDialog.getExistingDirectory(self, "Select Path", open_path)
+        if fname:
+            self.path_le.setText(fname)
+
     def set_secondary(self):
         self.secondary_cmb.clear()
         self.secondary_cmb.addItems(PROGRAM_LIST[self.primary_cmb.currentIndex()]["secondary"])
         self.update_ui("start")
 
     def log(self, msg):
-        msg = msg.strip()
+        msg = msg.rstrip()
         if msg != "":
             if self.parent():
                 self.parent().log_te.append(msg)
             else:
                 print(msg)
 
+    def log_status_bar(self, msg):
+        if self.parent() and self.parent().parent():
+            self.parent().parent().parent().parent().parent().statusBar().showMessage("msg")
+
     def worker_end(self):
         self.update_ui("start")
+        self.log_status_bar("Done")
 
 
 if __name__ == "__main__":

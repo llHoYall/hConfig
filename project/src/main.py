@@ -5,14 +5,15 @@ from PyQt5.QtCore import QSettings
 from PyQt5.QtGui import QIcon, QKeySequence
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QShortcut, QVBoxLayout, QTabWidget
 
+from common import util
 from ui.windows_ui import Windows
 from ui.mac_ui import Mac
 from ui.linux_ui import Linux
 
 
 MAJOR_VERSION = 0
-MINOR_VERSION = 1
-PATCH_VERSION = 1
+MINOR_VERSION = 2
+PATCH_VERSION = 4
 
 
 class HCongfig(QMainWindow):
@@ -38,7 +39,7 @@ class HCongfig(QMainWindow):
         self.setCentralWidget(central_widget)
 
         # Main UI
-        self.setWindowIcon(QIcon("../resource/logo.ico"))
+        self.setWindowIcon(QIcon(util.resource_path("resource/logo.ico")))
         self.setWindowTitle(
             "HoYa's Configurator v{}.{}.{}".format(MAJOR_VERSION, MINOR_VERSION, PATCH_VERSION)
         )
