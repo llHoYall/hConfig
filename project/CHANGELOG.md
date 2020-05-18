@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v0.2.3] - 2020-05-18
+### Added
+* pyenv on Windows
+
 ## [v0.2.2] - 2020-05-17
 ### Added
 * VSCode on Windows

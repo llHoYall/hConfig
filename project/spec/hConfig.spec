@@ -8,6 +8,7 @@ a = Analysis(['../src/main.py'],
              binaries=[],
              datas=[
                 ('../resource/logo.ico', './resource'),
+                ('../script/language/python/python.ps1', './script/language/python'),
                 ('../script/system/package_manager/chocolatey.ps1', './script/system/package_manager'),
                 ('../script/shell/powershell/*.ps1', './script/shell/powershell'),
                 ('../script/terminal/windows_terminal/*', './script/terminal/windows_terminal'),

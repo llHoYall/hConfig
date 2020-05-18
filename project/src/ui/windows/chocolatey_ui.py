@@ -30,6 +30,7 @@ PROGRAM_LIST = [
     {"primary": "Firefox", "secondary": []},
     {"primary": "Font", "secondary": ["Cascadia Code"]},
     {"primary": "Powershell", "secondary": ["core", "preview", "old"]},
+    {"primary": "pyenv", "secondary": []},
     {"primary": "VSCode", "secondary": []},
     {"primary": "Windows Terminal", "secondary": ["HoYa", "WDC"]},
 ]
@@ -155,6 +156,7 @@ class ChocolateyUI(QWidget):
             self.config_btn.setEnabled(False)
 
     def install(self):
+        self.log_status_bar("")
         if self.parent():
             self.parent().log_te.clear()
         if self.primary_cmb.currentText().lower() == "chocolatey":
@@ -164,6 +166,8 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "powershell":
             cmd = "choco install -y powershell-"
             cmd += self.secondary_cmb.currentText().lower()
+        elif self.primary_cmb.currentText().lower() == "pyenv":
+            cmd = "choco install -y pyenv-win"
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             cmd = "choco install -y microsoft-windows-terminal"
         else:
@@ -173,6 +177,7 @@ class ChocolateyUI(QWidget):
         self.update_ui("install")
 
     def upgrade(self):
+        self.log_status_bar("")
         if self.parent():
             self.parent().log_te.clear()
         cmd = "choco upgrade -y "
@@ -181,6 +186,8 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "powershell":
             cmd += "powershell-"
             cmd += self.secondary_cmb.currentText().lower()
+        elif self.primary_cmb.currentText().lower() == "pyenv":
+            cmd += "pyenv-win"
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             cmd += "microsoft-windows-terminal"
         else:
@@ -190,6 +197,7 @@ class ChocolateyUI(QWidget):
         self.update_ui("upgrade")
 
     def uninstall(self):
+        self.log_status_bar("")
         if self.parent():
             self.parent().log_te.clear()
         is_shell = True
@@ -202,6 +210,8 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "powershell":
             cmd = "choco uninstall -y powershell-"
             cmd += self.secondary_cmb.currentText().lower()
+        elif self.primary_cmb.currentText().lower() == "pyenv":
+            cmd = "choco uninstall -y pyenv-win"
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             cmd = "choco uninstall -y microsoft-windows-terminal"
         else:
@@ -211,6 +221,7 @@ class ChocolateyUI(QWidget):
         self.update_ui("uninstall")
 
     def config(self):
+        self.log_status_bar("")
         path = "."
         if self.primary_cmb.currentText().lower() == "git":
             script = util.resource_path("script/tool/git/git.ps1")
@@ -225,20 +236,20 @@ class ChocolateyUI(QWidget):
                 cmd = 'powershell -command "&{' + f". {script}; Powershell_Config" + '}"'
             else:
                 cmd = 'pwsh -command "&{' + f". {script}; Powershell_Config" + '}"'
+        elif self.primary_cmb.currentText().lower() == "pyenv":
+            script = util.resource_path("script/language/python/python.ps1")
+            cmd = 'powershell -command "&{' + f". {script}; Python_Config" + '}"'
+        elif self.primary_cmb.currentText().lower() == "vscode":
+            script = util.resource_path("script/tool/vscode/vscode.ps1")
+            cmd = 'powershell -command "&{' + f". {script}; VSCode_Config" + '}"'
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             script = util.resource_path("script/terminal/windows_terminal/windows_terminal.ps1")
             if self.secondary_cmb.currentText().lower() == "hoya":
                 cmd = 'powershell -command "&{' + f". {script}; WindowsTerminal_Config_HoYa" + '}"'
             elif self.secondary_cmb.currentText().lower() == "wdc":
                 cmd = 'powershell -command "&{' + f". {script}; WindowsTerminal_Config_WDC" + '}"'
-        elif self.primary_cmb.currentText().lower() == "vscode":
-            script = util.resource_path("script/tool/vscode/vscode.ps1")
-            cmd = 'powershell -command "&{' + f". {script}; VSCode_Config" + '}"'
         else:
-            if self.parent() and self.parent().parent():
-                self.parent().parent().parent().parent().parent().statusBar().showMessage(
-                    "Nothing to configure"
-                )
+            self.log_status_bar("Nothing to configure")
             return
         if self.parent():
             self.parent().log_te.clear()
@@ -257,6 +268,9 @@ class ChocolateyUI(QWidget):
                 return False
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             path = rf"C:\ProgramData\chocolatey\lib\microsoft-windows-terminal"
+            return True if os.path.exists(path) else False
+        elif self.primary_cmb.currentText().lower() == "pyenv":
+            path = rf"C:\ProgramData\chocolatey\lib\pyenv-win"
             return True if os.path.exists(path) else False
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
@@ -287,10 +301,13 @@ class ChocolateyUI(QWidget):
             else:
                 print(msg)
 
+    def log_status_bar(self, msg):
+        if self.parent() and self.parent().parent():
+            self.parent().parent().parent().parent().parent().statusBar().showMessage("msg")
+
     def worker_end(self):
         self.update_ui("start")
-        if self.parent() and self.parent().parent():
-            self.parent().parent().parent().parent().parent().statusBar().showMessage("Done")
+        self.log_status_bar("Done")
 
 
 if __name__ == "__main__":
