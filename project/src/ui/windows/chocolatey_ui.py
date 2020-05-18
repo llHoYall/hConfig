@@ -25,12 +25,13 @@ from common.worker import Worker
 
 PROGRAM_LIST = [
     {"primary": "Chocolatey", "secondary": []},
-    {"primary": "Git", "secondary": ["Global", "HoYa"]},
-    {"primary": "Google Chrome", "secondary": []},
     {"primary": "Firefox", "secondary": []},
     {"primary": "Font", "secondary": ["Cascadia Code"]},
+    {"primary": "Git", "secondary": ["Global", "HoYa"]},
+    {"primary": "Google Chrome", "secondary": []},
     {"primary": "Powershell", "secondary": ["core", "preview", "old"]},
     {"primary": "pyenv", "secondary": []},
+    {"primary": "Q-Dir", "secondary": []},
     {"primary": "VSCode", "secondary": []},
     {"primary": "Windows Terminal", "secondary": ["HoYa", "WDC"]},
 ]
@@ -168,6 +169,8 @@ class ChocolateyUI(QWidget):
             cmd += self.secondary_cmb.currentText().lower()
         elif self.primary_cmb.currentText().lower() == "pyenv":
             cmd = "choco install -y pyenv-win"
+        elif self.primary_cmb.currentText().lower() == "q-dir":
+            cmd = "choco install -y qdir"
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             cmd = "choco install -y microsoft-windows-terminal"
         else:
@@ -188,6 +191,8 @@ class ChocolateyUI(QWidget):
             cmd += self.secondary_cmb.currentText().lower()
         elif self.primary_cmb.currentText().lower() == "pyenv":
             cmd += "pyenv-win"
+        elif self.primary_cmb.currentText().lower() == "q-dir":
+            cmd += "qdir"
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             cmd += "microsoft-windows-terminal"
         else:
@@ -212,6 +217,8 @@ class ChocolateyUI(QWidget):
             cmd += self.secondary_cmb.currentText().lower()
         elif self.primary_cmb.currentText().lower() == "pyenv":
             cmd = "choco uninstall -y pyenv-win"
+        elif self.primary_cmb.currentText().lower() == "q-dir":
+            cmd = "choco uninstall -y qdir"
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             cmd = "choco uninstall -y microsoft-windows-terminal"
         else:
@@ -271,6 +278,9 @@ class ChocolateyUI(QWidget):
             return True if os.path.exists(path) else False
         elif self.primary_cmb.currentText().lower() == "pyenv":
             path = rf"C:\ProgramData\chocolatey\lib\pyenv-win"
+            return True if os.path.exists(path) else False
+        elif self.primary_cmb.currentText().lower() == "q-dir":
+            path = rf"C:\ProgramData\chocolatey\lib\qdir"
             return True if os.path.exists(path) else False
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")

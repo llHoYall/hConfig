@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v0.2.4] - 2020-05-18
+### Added
+* Q-Dir on Windows
+
 ## [v0.2.3] - 2020-05-18
 ### Added
 * pyenv on Windows
