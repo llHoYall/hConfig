@@ -29,6 +29,7 @@ PROGRAM_LIST = [
     {"primary": "Font", "secondary": ["Cascadia Code"]},
     {"primary": "Git", "secondary": ["Global", "HoYa"]},
     {"primary": "Google Chrome", "secondary": []},
+    {"primary": "NVM", "secondary": []},
     {"primary": "Powershell", "secondary": ["core", "preview", "old"]},
     {"primary": "pyenv", "secondary": []},
     {"primary": "Q-Dir", "secondary": []},
