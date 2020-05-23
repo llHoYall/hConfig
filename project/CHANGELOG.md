@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v0.2.6] - 2020-05-20
+### Added
+* Go on Windows
+
 ## [v0.2.5] - 2020-05-19
 ### Added
 * NVM on Windows

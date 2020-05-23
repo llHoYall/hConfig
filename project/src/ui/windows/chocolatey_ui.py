@@ -28,6 +28,7 @@ PROGRAM_LIST = [
     {"primary": "Firefox", "secondary": []},
     {"primary": "Font", "secondary": ["Cascadia Code"]},
     {"primary": "Git", "secondary": ["Global", "HoYa"]},
+    {"primary": "Go", "secondary": []},
     {"primary": "Google Chrome", "secondary": []},
     {"primary": "NVM", "secondary": []},
     {"primary": "Powershell", "secondary": ["core", "preview", "old"]},
@@ -165,6 +166,8 @@ class ChocolateyUI(QWidget):
             cmd = "powershell Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
         elif self.primary_cmb.currentText().lower() == "font":
             cmd = "choco install -y cascadiacode"
+        elif self.primary_cmb.currentText().lower() == "go":
+            cmd = "choco install -y golang"
         elif self.primary_cmb.currentText().lower() == "powershell":
             cmd = "choco install -y powershell-"
             cmd += self.secondary_cmb.currentText().lower()
@@ -187,6 +190,8 @@ class ChocolateyUI(QWidget):
         cmd = "choco upgrade -y "
         if self.primary_cmb.currentText().lower() == "font":
             cmd += "cascadiacode"
+        elif self.primary_cmb.currentText().lower() == "go":
+            cmd += "golang"
         elif self.primary_cmb.currentText().lower() == "powershell":
             cmd += "powershell-"
             cmd += self.secondary_cmb.currentText().lower()
@@ -213,6 +218,8 @@ class ChocolateyUI(QWidget):
             is_shell = False
         elif self.primary_cmb.currentText().lower() == "font":
             cmd = "choco uninstall -y cascadiacode"
+        elif self.primary_cmb.currentText().lower() == "go":
+            cmd = "choco uninstall -y golang"
         elif self.primary_cmb.currentText().lower() == "powershell":
             cmd = "choco uninstall -y powershell-"
             cmd += self.secondary_cmb.currentText().lower()
@@ -269,19 +276,22 @@ class ChocolateyUI(QWidget):
             return True if which("choco") is not None else False
         elif self.primary_cmb.currentText().lower() == "font":
             return True if os.path.exists(r"C:\ProgramData\chocolatey\lib\cascadiacode") else False
+        elif self.primary_cmb.currentText().lower() == "go":
+            path = rf"C:\ProgramData\chocolatey\lib\golang"
+            return True if os.path.exists(path) else False
         elif self.primary_cmb.currentText().lower() == "powershell":
             if glob("C:/ProgramData/chocolatey/lib/powershell*"):
                 return True
             else:
                 return False
-        elif self.primary_cmb.currentText().lower() == "windows terminal":
-            path = rf"C:\ProgramData\chocolatey\lib\microsoft-windows-terminal"
-            return True if os.path.exists(path) else False
         elif self.primary_cmb.currentText().lower() == "pyenv":
             path = rf"C:\ProgramData\chocolatey\lib\pyenv-win"
             return True if os.path.exists(path) else False
         elif self.primary_cmb.currentText().lower() == "q-dir":
             path = rf"C:\ProgramData\chocolatey\lib\qdir"
+            return True if os.path.exists(path) else False
+        elif self.primary_cmb.currentText().lower() == "windows terminal":
+            path = rf"C:\ProgramData\chocolatey\lib\microsoft-windows-terminal"
             return True if os.path.exists(path) else False
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
@@ -314,7 +324,7 @@ class ChocolateyUI(QWidget):
 
     def log_status_bar(self, msg):
         if self.parent() and self.parent().parent():
-            self.parent().parent().parent().parent().parent().statusBar().showMessage("msg")
+            self.parent().parent().parent().parent().parent().statusBar().showMessage(msg)
 
     def worker_end(self):
         self.update_ui("start")
