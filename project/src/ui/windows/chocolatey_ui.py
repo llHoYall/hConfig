@@ -36,6 +36,7 @@ PROGRAM_LIST = [
     {"primary": "Q-Dir", "secondary": []},
     {"primary": "VSCode", "secondary": []},
     {"primary": "Windows Terminal", "secondary": ["HoYa", "WDC"]},
+    {"primary": "WSL", "secondary": ["feature", "Ubuntu 18.04"]},
 ]
 
 
@@ -66,7 +67,8 @@ class ChocolateyUI(QWidget):
 
     def init_ui(self):
         self.primary_cmb.addItems([item["primary"] for item in PROGRAM_LIST])
-        self.primary_cmb.currentTextChanged.connect(self.set_secondary)
+        self.primary_cmb.currentTextChanged.connect(self.set_primary)
+        self.secondary_cmb.currentTextChanged.connect(self.set_secondary)
 
         self.state_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
 
@@ -177,6 +179,11 @@ class ChocolateyUI(QWidget):
             cmd = "choco install -y qdir"
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             cmd = "choco install -y microsoft-windows-terminal"
+        elif self.primary_cmb.currentText().lower() == "wsl":
+            if self.secondary_cmb.currentText().lower() == "feature":
+                cmd = "choco install -y wsl"
+            elif self.secondary_cmb.currentText().lower() == "ubuntu v18.04":
+                cmd = "choco install -y wsl-ubuntu-1804"
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             cmd = f"choco install -y {program}"
@@ -201,6 +208,11 @@ class ChocolateyUI(QWidget):
             cmd += "qdir"
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             cmd += "microsoft-windows-terminal"
+        elif self.primary_cmb.currentText().lower() == "wsl":
+            if self.secondary_cmb.currentText().lower() == "feature":
+                cmd += "wsl"
+            elif self.secondary_cmb.currentText().lower() == "ubuntu v18.04":
+                cmd += "wsl-ubuntu-1804"
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             cmd += program
@@ -229,6 +241,11 @@ class ChocolateyUI(QWidget):
             cmd = "choco uninstall -y qdir"
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             cmd = "choco uninstall -y microsoft-windows-terminal"
+        elif self.primary_cmb.currentText().lower() == "wsl":
+            if self.secondary_cmb.currentText().lower() == "feature":
+                cmd = "choco uninstall -y wsl"
+            elif self.secondary_cmb.currentText().lower() == "ubuntu v18.04":
+                cmd = "choco uninstall -y wsl-ubuntu-1804"
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             cmd = f"choco uninstall -y {program}"
@@ -293,6 +310,12 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             path = rf"C:\ProgramData\chocolatey\lib\microsoft-windows-terminal"
             return True if os.path.exists(path) else False
+        elif self.primary_cmb.currentText().lower() == "wsl":
+            if self.secondary_cmb.currentText().lower() == "feature":
+                path = rf"C:\ProgramData\chocolatey\lib\wsl"
+            elif self.secondary_cmb.currentText().lower() == "ubuntu v18.04":
+                path = rf"C:\ProgramData\chocolatey\lib\wsl-ubuntu-1804"
+            return True if os.path.exists(path) else False
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             path = rf"C:\ProgramData\chocolatey\lib\{program}"
@@ -309,9 +332,12 @@ class ChocolateyUI(QWidget):
         if fname:
             self.path_le.setText(fname)
 
-    def set_secondary(self):
+    def set_primary(self):
         self.secondary_cmb.clear()
         self.secondary_cmb.addItems(PROGRAM_LIST[self.primary_cmb.currentIndex()]["secondary"])
+        self.update_ui("start")
+
+    def set_secondary(self):
         self.update_ui("start")
 
     def log(self, msg):

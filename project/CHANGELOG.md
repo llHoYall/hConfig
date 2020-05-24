@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v0.2.7] - 2020-05-234
+### Added
+* WSL on Windows
+  + Ubuntu 18.04
+
 ## [v0.2.6] - 2020-05-20
 ### Added
 * Go on Windows
