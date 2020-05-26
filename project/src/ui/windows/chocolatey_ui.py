@@ -32,7 +32,7 @@ PROGRAM_LIST = [
     {"primary": "Google Chrome", "secondary": []},
     {"primary": "NVM", "secondary": []},
     {"primary": "Powershell", "secondary": ["core", "preview", "old"]},
-    {"primary": "pyenv", "secondary": []},
+    {"primary": "pyenv", "secondary": ["feature", "3.8.1"]},
     {"primary": "Q-Dir", "secondary": []},
     {"primary": "VSCode", "secondary": []},
     {"primary": "Windows Terminal", "secondary": ["HoYa", "WDC"]},
@@ -269,8 +269,18 @@ class ChocolateyUI(QWidget):
             else:
                 cmd = 'pwsh -command "&{' + f". {script}; Powershell_Config" + '}"'
         elif self.primary_cmb.currentText().lower() == "pyenv":
-            script = util.resource_path("script/language/python/python.ps1")
-            cmd = 'powershell -command "&{' + f". {script}; Python_Config" + '}"'
+            version = self.secondary_cmb.currentText().lower().strip()
+            if version == "feature":
+                script = util.resource_path("script/language/python/python.ps1")
+                cmd = 'powershell -command "&{' + f". {script}; Python_Config" + '}"'
+            else:
+                script = util.resource_path("script/language/python/python.ps1")
+                path = self.path_le.text()
+                cmd = (
+                    'powershell -command "&{'
+                    + f". {script}; Python_Config_VSCode -version {version}-amd64"
+                    + '}"'
+                )
         elif self.primary_cmb.currentText().lower() == "vscode":
             script = util.resource_path("script/tool/vscode/vscode.ps1")
             cmd = 'powershell -command "&{' + f". {script}; VSCode_Config" + '}"'
@@ -313,9 +323,10 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "wsl":
             if self.secondary_cmb.currentText().lower() == "feature":
                 path = rf"C:\ProgramData\chocolatey\lib\wsl"
+                return True if os.path.exists(path) else False
             elif self.secondary_cmb.currentText().lower() == "ubuntu v18.04":
                 path = rf"C:\ProgramData\chocolatey\lib\wsl-ubuntu-1804"
-            return True if os.path.exists(path) else False
+                return True if os.path.exists(path) else False
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
             path = rf"C:\ProgramData\chocolatey\lib\{program}"

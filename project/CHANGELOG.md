@@ -1,7 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [v0.2.7] - 2020-05-234
+## [v0.2.8] - 2020-05-26
+### Added
+* Python project creating feature
+
+## [v0.2.7] - 2020-05-23
 ### Added
 * WSL on Windows
   + Ubuntu 18.04
