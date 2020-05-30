@@ -182,7 +182,7 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "wsl":
             if self.secondary_cmb.currentText().lower() == "feature":
                 cmd = "choco install -y wsl"
-            elif self.secondary_cmb.currentText().lower() == "ubuntu v18.04":
+            elif self.secondary_cmb.currentText().lower() == "ubuntu 18.04":
                 cmd = "choco install -y wsl-ubuntu-1804"
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
@@ -211,7 +211,7 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "wsl":
             if self.secondary_cmb.currentText().lower() == "feature":
                 cmd += "wsl"
-            elif self.secondary_cmb.currentText().lower() == "ubuntu v18.04":
+            elif self.secondary_cmb.currentText().lower() == "ubuntu 18.04":
                 cmd += "wsl-ubuntu-1804"
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
@@ -244,7 +244,7 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "wsl":
             if self.secondary_cmb.currentText().lower() == "feature":
                 cmd = "choco uninstall -y wsl"
-            elif self.secondary_cmb.currentText().lower() == "ubuntu v18.04":
+            elif self.secondary_cmb.currentText().lower() == "ubuntu 18.04":
                 cmd = "choco uninstall -y wsl-ubuntu-1804"
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
@@ -324,7 +324,7 @@ class ChocolateyUI(QWidget):
             if self.secondary_cmb.currentText().lower() == "feature":
                 path = rf"C:\ProgramData\chocolatey\lib\wsl"
                 return True if os.path.exists(path) else False
-            elif self.secondary_cmb.currentText().lower() == "ubuntu v18.04":
+            elif self.secondary_cmb.currentText().lower() == "ubuntu 18.04":
                 path = rf"C:\ProgramData\chocolatey\lib\wsl-ubuntu-1804"
                 return True if os.path.exists(path) else False
         else:

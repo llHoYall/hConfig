@@ -13,7 +13,7 @@ from ui.linux_ui import Linux
 
 MAJOR_VERSION = 0
 MINOR_VERSION = 2
-PATCH_VERSION = 8
+PATCH_VERSION = 9
 
 
 class HCongfig(QMainWindow):
