@@ -12,6 +12,7 @@ a = Analysis(['../src/main.py'],
                 ('../script/system/package_manager/chocolatey.ps1', './script/system/package_manager'),
                 ('../script/shell/powershell/*.ps1', './script/shell/powershell'),
                 ('../script/terminal/windows_terminal/*', './script/terminal/windows_terminal'),
+                ('../script/tool/autohotkey/*', './script/tool/autohotkey'),
                 ('../script/tool/git/git.ps1', './script/tool/git'),
                 ('../script/tool/vscode/*', './script/tool/vscode')
              ],

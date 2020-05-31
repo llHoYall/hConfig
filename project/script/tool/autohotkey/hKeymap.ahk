@@ -66,4 +66,6 @@ VK19 & c::send, {WheelUp}
 ; LAYER 3 (Media) -------------------------------------------------------------;
 #if GetKeyState("AppsKey", "P")
 +c::Run Calc
++f::Run Firefox
++n::Run Notepad
 +t::Run wt

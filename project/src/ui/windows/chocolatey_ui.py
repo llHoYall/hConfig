@@ -24,6 +24,7 @@ from common.worker import Worker
 
 
 PROGRAM_LIST = [
+    {"primary": "AutoHotKey", "secondary": ["GTune CHF4 SnowWhite XRGB"]},
     {"primary": "Chocolatey", "secondary": []},
     {"primary": "Firefox", "secondary": []},
     {"primary": "Font", "secondary": ["Cascadia Code"]},
@@ -68,6 +69,7 @@ class ChocolateyUI(QWidget):
     def init_ui(self):
         self.primary_cmb.addItems([item["primary"] for item in PROGRAM_LIST])
         self.primary_cmb.currentTextChanged.connect(self.set_primary)
+        self.secondary_cmb.addItems(PROGRAM_LIST[self.primary_cmb.currentIndex()]["secondary"])
         self.secondary_cmb.currentTextChanged.connect(self.set_secondary)
 
         self.state_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
@@ -255,7 +257,13 @@ class ChocolateyUI(QWidget):
     def config(self):
         self.log_status_bar("")
         path = "."
-        if self.primary_cmb.currentText().lower() == "git":
+        if self.primary_cmb.currentText().lower() == "autohotkey":
+            script = util.resource_path("script/tool/autohotkey/autohotkey.ps1")
+            keymap = self.secondary_cmb.currentText().lower()
+            cmd = (
+                'powershell -command "&{' + f". {script}; AutoHotKey_Config -keymap {keymap}" + '}"'
+            )
+        elif self.primary_cmb.currentText().lower() == "git":
             script = util.resource_path("script/tool/git/git.ps1")
             if self.secondary_cmb.currentText().lower() == "global":
                 cmd = 'powershell -command "&{' + f". {script}; Git_Config_Global" + '}"'

@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v0.3.0] - 2020-05-31
+### Added
+* AutoHotKey on Windows
+
 ## [v0.2.9] - 2020-05-30
 ### Fixed
 * Fixed typo about ubuntu in WSL
