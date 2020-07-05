@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v0.3.1] - 2020-07-05
+### Added
+* WSL2 on Windows
+
 ## [v0.3.0] - 2020-05-31
 ### Added
 * AutoHotKey on Windows

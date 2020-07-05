@@ -37,7 +37,7 @@ PROGRAM_LIST = [
     {"primary": "Q-Dir", "secondary": []},
     {"primary": "VSCode", "secondary": []},
     {"primary": "Windows Terminal", "secondary": ["HoYa", "WDC"]},
-    {"primary": "WSL", "secondary": ["feature", "Ubuntu 18.04"]},
+    {"primary": "WSL", "secondary": ["WSL2", "WSL", "Ubuntu 18.04"]},
 ]
 
 
@@ -182,7 +182,9 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             cmd = "choco install -y microsoft-windows-terminal"
         elif self.primary_cmb.currentText().lower() == "wsl":
-            if self.secondary_cmb.currentText().lower() == "feature":
+            if self.secondary_cmb.currentText().lower() == "wsl2":
+                cmd = "choco install -y wsl2 --pre"
+            elif self.secondary_cmb.currentText().lower() == "wsl":
                 cmd = "choco install -y wsl"
             elif self.secondary_cmb.currentText().lower() == "ubuntu 18.04":
                 cmd = "choco install -y wsl-ubuntu-1804"
@@ -211,7 +213,9 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             cmd += "microsoft-windows-terminal"
         elif self.primary_cmb.currentText().lower() == "wsl":
-            if self.secondary_cmb.currentText().lower() == "feature":
+            if self.secondary_cmb.currentText().lower() == "wsl2":
+                cmd += "wsl2 --pre"
+            elif self.secondary_cmb.currentText().lower() == "wsl":
                 cmd += "wsl"
             elif self.secondary_cmb.currentText().lower() == "ubuntu 18.04":
                 cmd += "wsl-ubuntu-1804"
@@ -244,7 +248,9 @@ class ChocolateyUI(QWidget):
         elif self.primary_cmb.currentText().lower() == "windows terminal":
             cmd = "choco uninstall -y microsoft-windows-terminal"
         elif self.primary_cmb.currentText().lower() == "wsl":
-            if self.secondary_cmb.currentText().lower() == "feature":
+            if self.secondary_cmb.currentText().lower() == "wsl2":
+                cmd = "choco uninstall -y wsl2 --pre"
+            elif self.secondary_cmb.currentText().lower() == "wsl":
                 cmd = "choco uninstall -y wsl"
             elif self.secondary_cmb.currentText().lower() == "ubuntu 18.04":
                 cmd = "choco uninstall -y wsl-ubuntu-1804"
@@ -329,11 +335,12 @@ class ChocolateyUI(QWidget):
             path = rf"C:\ProgramData\chocolatey\lib\microsoft-windows-terminal"
             return True if os.path.exists(path) else False
         elif self.primary_cmb.currentText().lower() == "wsl":
-            if self.secondary_cmb.currentText().lower() == "feature":
-                path = rf"C:\ProgramData\chocolatey\lib\wsl"
-                return True if os.path.exists(path) else False
-            elif self.secondary_cmb.currentText().lower() == "ubuntu 18.04":
+            if self.secondary_cmb.currentText().lower() == "ubuntu 18.04":
                 path = rf"C:\ProgramData\chocolatey\lib\wsl-ubuntu-1804"
+                return True if os.path.exists(path) else False
+            else:
+                program = self.secondary_cmb.currentText().strip().lower().replace(" ", "")
+                path = rf"C:\ProgramData\chocolatey\lib\{program}"
                 return True if os.path.exists(path) else False
         else:
             program = self.primary_cmb.currentText().strip().lower().replace(" ", "")
