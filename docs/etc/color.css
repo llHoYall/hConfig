@@ -1,0 +1,48 @@
+
+terminal.sexy {
+  background:   #1d1f21;  foreground:   #c5c8c6;
+  black:        #282a2e;  bold-back:    #373b41;
+  red:          #a54242;  bold-red:     #cc6666;
+  green:        #8c9440;  bold-green:   #b5bd68;
+  yellow:       #de935f;  bold-yellow:  #f0c674;
+  blue:         #5f819d;  bold-blue:    #81a2be;
+  magenta:      #85678f;  bold-magenta: #b294bb;
+  cyan:         #5e8d87;  bold-cyan:    #8abeb7;
+  white:        #707880;  bold-white:   #c5c8c6;
+}
+
+solarized {
+  base03:       #002b36;  yellow:       #b58900;
+  base02:       #073642;  orange:       #cb4b16;
+  base01:       #586e75;  red:          #dc322f;
+  base00:       #657b83;  magenta:      #d33682;
+  base0:        #839496;  violet:       #6c71c4;
+  base1:        #93a1a1;  blue:         #268bd2;
+  base2:        #eee8d5;  cyan:         #2aa198;
+  base3:        #fdf6e3;  green:        #859900;
+}
+
+terminal.color {
+  black:        #262626;  brblack:      #1c1c1c;
+  red:          #d70000;  brred:        #d75f00;
+  green:        #5f8700;  brgreen:      #585858;
+  yellow:       #af8700;  bryellow:     #626262;
+  blue:         #0087ff;  brblue:       #808080;
+  magenta:      #af005f;  brmagenta:    #5f5faf;
+  cyan:         #00afaf;  brcyan:       #8a8a8a;
+  white:        #e4e4e4;  brwhite:      #ffffd7;
+}
+
+material.palette {
+  primary-light:    #a6d4fa;  primary-main:   #90caf9;  primary-dark:   #648dae;
+  secondary-light:  #f6a5c0;  secondary-main: #f48fb1;  secondary-dark: #aa647b;
+  error-light:      #e57373;  error-main:     #f44336;  error-dark:     #d32f2f;
+  warning-light:    #ffb74d;  warning-main:   #ff9800;  warning-dark:   #f57c00;
+  info-light:       #64b5f6;  info-main:      #2196f3;  info-dark:      #1976d2;
+  success-light:    #81c784;  success-main:   #4caf50;  success-dark:   #388e3c;
+}
+
+/*
+  Reference
+  > https://material.io/design/color/the-color-system.html
+*/
