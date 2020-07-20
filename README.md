@@ -37,6 +37,8 @@ My development environment configuration.
 
 ## Language
 
+* [JavaScript]
+  + [ESLint & Prettier](docs/language/javascript/eslint_prettier.md)
 * [Python]
   + [Jupyter](docs/language/python/jupyter.md)
 
