@@ -1,6 +1,6 @@
 # Extension for VSCode
 
-## Insert Unicode
+## Insert Unicode (`brunnerh.insert-unicode`)
 
 1. Call `Command Palette`
 2. Select `Insert Unicode: Insert`

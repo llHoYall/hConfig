@@ -47,7 +47,7 @@ My development environment configuration.
 
 - [iTerm2](https://github.com/llHoYall/hConfig/wiki/iTerm2)
 - [MSYS2](https://github.com/llHoYall/hConfig/wiki/MSYS2)
-- [VSCode](https://github.com/llHoYall/hConfig/wiki/vscode)
+- [VSCode](docs/tool/vscode/vscode.md)
 - [Minicom](https://github.com/llHoYall/hConfig/wiki/Minicom)
 - [Notion](https://github.com/llHoYall/hConfig/wiki/Notion)
 
