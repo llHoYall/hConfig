@@ -10,7 +10,7 @@ My development environment configuration.
 
 ### Tips
 
-- [MAC](https://github.com/llHoYall/hConfig/wiki/MAC-Tips)
+* [MAC](https://github.com/llHoYall/hConfig/wiki/MAC-Tips)
 * [Linux](docs/tips/linux.md)
   + [Commands](docs/tips/linux_commands.md)
 * [Windows](docs/tips/windows.md)
@@ -19,9 +19,7 @@ My development environment configuration.
 
 ### Package Manager
 
-- [Homebrew](docs/package_manager/homebrew.md)
 - [Apt](https://github.com/llHoYall/hConfig/wiki/Apt)
-- [Chocolatey](https://github.com/llHoYall/hConfig/wiki/Chocolatey)
 - [Pacman](https://github.com/llHoYall/hConfig/wiki/Pacman)
 
 ## Shell
@@ -45,7 +43,6 @@ My development environment configuration.
 
 ## Tools
 
-- [iTerm2](https://github.com/llHoYall/hConfig/wiki/iTerm2)
 - [MSYS2](https://github.com/llHoYall/hConfig/wiki/MSYS2)
 - [VSCode](docs/tool/vscode/vscode.md)
 - [Minicom](https://github.com/llHoYall/hConfig/wiki/Minicom)

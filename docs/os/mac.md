@@ -39,9 +39,7 @@
 
 ## System
 
-* Homebrew (`/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`)
 * xcode (`xcode-select --install`)
-* zsh (`brew install zsh`)
 * Vim (`brew install vim`)
   + Neovim (`brew install neovim`)
 * Google Chrome (`brew cask install google-chrome`)
@@ -53,26 +51,10 @@
 ## Utility
 
 * Amphetamine (`App Store`)
-* Magnet (`App Store`)
-* [Notion](https://www.notion.so/desktop)
-
-## Development
-
-### Fonts
-
-* [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts)
-* [D2 Coding Font](https://github.com/naver/d2codingfont)
 
 ### Dev Utility
 
-* Git (`brew install git`)
-  + Git-LFS (`brew install git-lfs`)
 * ctags (`brew install ctags`)
-* Visual Studio Code (`brew cask install visual-studio-code`)
-
-### Terminal
-
-* iTerm2 (`brew cask install iterm2`)
 
 ### Dev Tool
 
