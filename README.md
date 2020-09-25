@@ -31,7 +31,6 @@ My development environment configuration.
 - [WSL](docs/shell/wsl.md)
 - Bash
   - [Color](docs/shell/ansi_color.md)
-- [zsh](docs/shell/zsh.md)
 
 ## Language
 

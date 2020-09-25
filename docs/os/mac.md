@@ -41,7 +41,6 @@
 
 * xcode (`xcode-select --install`)
 * Vim (`brew install vim`)
-  + Neovim (`brew install neovim`)
 * Google Chrome (`brew cask install google-chrome`)
 * Dropbox (`brew cask install dropbox`)
 * [Synology: Drive](https://www.synology.com/en-global/support/download/DS213j#utilities)
@@ -55,10 +54,6 @@
 ### Dev Utility
 
 * ctags (`brew install ctags`)
-
-### Dev Tool
-
-* NVM (`brew install nvm`)
 
 ## Etc
 
