@@ -49,8 +49,13 @@ hGit_GetStatus() {
 		local ahead=0
 		local behind=0
 		if [ ! -z $(git remote) ]; then
-			ahead=$(git rev-list --left-right --count master...origin/master | cut -d '	' -f1)
-			behind=$(git rev-list --left-right --count master...origin/master | cut -d '	' -f2)
+			if [ "$name" = "main" ]; then
+				ahead=$(git rev-list --left-right --count main...origin/main | cut -d '	' -f1)
+				behind=$(git rev-list --left-right --count main...origin/main | cut -d '	' -f2)
+			else
+				ahead=$(git rev-list --left-right --count master...origin/master | cut -d '	' -f1)
+				behind=$(git rev-list --left-right --count master...origin/master | cut -d '	' -f2)
+			fi
 		fi
 
 		# Get Staging Area Status

@@ -3,7 +3,6 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -17,7 +16,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 #ZSH_THEME="ys"
 ZSH_THEME="hoya"
 
-ZSH_DISABLE_COMPFIX=true
+ZSH_DISABLE_COMPFIX="true"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -115,11 +114,13 @@ export EDITOR='nvim'
 # LS_COLORS -------------------------------------------------------------------#
 export LS_COLORS=$LS_COLORS:"di=34:*.sh=32:*.ps1=32:ow=34:"
 
+# Python ----------------------------------------------------------------------#
+export VIRTUAL_ENV_DISABLE_PROMPT="true"
+
 # NVM -------------------------------------------------------------------------#
-if [ -d "$HOME/.nvm" ]; then
-	export NVM_DIR="$HOME/.nvm"
-	. "/usr/local/opt/nvm/nvm.sh"
-fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 
 # fzf -------------------------------------------------------------------------#
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -158,4 +159,5 @@ alias grv="git revert"
 alias gsh="git show"
 alias gsts="git stash"
 alias gst="git status"
+alias gs="git switch"
 alias gt="git tag"
