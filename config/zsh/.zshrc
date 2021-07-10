@@ -117,6 +117,9 @@ export LS_COLORS=$LS_COLORS:"di=34:*.sh=32:*.ps1=32:ow=34:"
 # Python ----------------------------------------------------------------------#
 export VIRTUAL_ENV_DISABLE_PROMPT="true"
 
+# Go --------------------------------------------------------------------------#
+export GOPATH=$HOME/go
+
 # NVM -------------------------------------------------------------------------#
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
@@ -129,6 +132,9 @@ export NVM_DIR="$HOME/.nvm"
 if [ -z "$TMUX" ]; then
 	tmux attach -t hTMUX || tmux new -s hTMUX
 fi
+
+# Path ------------------------------------------------------------------------#
+export PATH = $PATH:$GOPATH/bin
 
 # Aliasing --------------------------------------------------------------------#
 alias ll="ls -ahlF"
